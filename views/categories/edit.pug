@@ -1,0 +1,9 @@
+doctype html 
+html
+    head
+        title Categories
+    body
+        h1 Categories
+        form(action="/categories/#{category.id}", method="POST")
+           textarea(name="description" placeholder="¿Qué tarea quieres guardar?")= category.description
+            input(type="submit" value="Guardar")

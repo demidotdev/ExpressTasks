@@ -1,0 +1,11 @@
+html 
+    head 
+        title Tareas
+    body 
+        form(action="/tasks" method="POST")
+            //- El nombre de nuestra entrada en el form debe coincidir con el identificador que usamos en el 
+            //- servidor (description en este caso)
+            //- Al enviar el formulario el navegador toma todos los controles que tienen un nombre y 
+            //- envia este contenido al servidor
+            textarea(name="description" placeholder="Escribí acá tu tarea")
+            input(type="submit" value="Guardar")

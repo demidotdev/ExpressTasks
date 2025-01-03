@@ -1,0 +1,9 @@
+doctype html 
+html
+    head
+        title Tareas
+    body
+
+        form(action="/categories/#{category.id}", method="POST")
+            textarea(name="description" placeholder="¿Qué tarea quieres guardar?")
+            input(type="submit" value="Guardar")

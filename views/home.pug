@@ -1,0 +1,10 @@
+doctype html
+html(lang='es')
+    head
+        //- meta(charset='utf-8')
+        title Bienvenido
+    body
+        h1= user.email 
+        //- todo lo que esta despues de un signo "=" se interpreta como una expresión de javascript 
+        form(action='/sessions?_method=DELETE' method='POST')
+            input(type='submit' value='Cerrar Sesion')

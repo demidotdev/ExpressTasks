@@ -1,0 +1,12 @@
+html
+    head
+        title Tareas
+    body 
+        h1= task.description
+        p= task.createdAt
+        p
+            strong Autor: 
+            span= task.user.email 
+            //- la propiedad "user" está vacía por defecto a menos que se le pase la propiedad "include" al metodo "findByPk" en el controlador (Eager Loading)
+        form(action=`/tasks/${task.id}?_method=DELETE` method="POST")
+            input(type="submit" value="Eliminar")
