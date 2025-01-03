@@ -1,9 +1,10 @@
 doctype html 
 html
     head
-        title Categories
+        title Categorías
     body
-        h1 Categories
-        form(action="/categories/#{category.id}", method="POST")
-           textarea(name="description" placeholder="¿Qué tarea quieres guardar?")= category.description
+        h1 Categorías
+        form(action="/categories/#{category.id}?_method=PUT", method="POST")
+            input(type="text" name="title" placeholder="Título de la categoría" value=category.title)
+            input(type="color" name="color" value=category.color)
             input(type="submit" value="Guardar")

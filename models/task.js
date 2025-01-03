@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   // Recibe 1º El objeto conectado a la base de datos: "sequelize", 2º Una clase "DataTypes" que contiene
   // todos los diferentes tipos de datos disponibles para definir el modelo
 
-  //Aprovechando la información recibida en los parámetros generámos un nuevo modelo
+  //Aprovechando la información recibida en los parámetros generamos un nuevo modelo
   const Task = sequelize.define(
     "Task",
     {

@@ -1,6 +1,8 @@
+const Category = require("../models").Category;
+
 module.exports = {
     create: function (req, res) {
-        category.create({
+        Category.create({
             title: req.body.title,
             color: req.body.color
         }).then(result => {
