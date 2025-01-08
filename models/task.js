@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       as: "user",
       foreignKey: "userId" 
     });
+    Task.belongsToMany(models.Category, {
+      through: "TaskCategories",
+      as: "categories",
+      //foreignKey: "taskId" 
+    });
   }
   // class Task extends Model {
   //   /**
