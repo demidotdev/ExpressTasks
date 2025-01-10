@@ -5,5 +5,6 @@ html
         form(action=`/tasks/${task.id}?_method=PUT` method="POST")
     
       //-  el task.description no es obligatorio        
+    input(type="text" name="categories" placeholder="ID de categorías separados por coma")
     textarea(name="description" placeholder="Escribí acá tu tarea")= task.description
     input(type="submit" value="Guardar")

@@ -27,7 +27,8 @@ module.exports = {
 
     Task.findByPk(req.params.id, {
       include: [
-        'user'
+        'user',
+        'categories'
       ]
     }).then(function(task){
     res.render('tasks/show', {task});// Usando "shorthand property sintax"
@@ -36,6 +37,7 @@ module.exports = {
   },
  edit: function(req, res){
     Task.findByPk(req.params.id).then(function(task){
+      //task.addCategories([1, 5]); // Esto establecería una relación de "Muchos a Muchos" entre las categorias con ID 1 y con ID 5 con la tarea, y se encargaría, internamente sequelize, de crear los registros en la tabla asociativa y en general de completar toda la relación.
       res.render('tasks/edit', {task});
     })
 
@@ -64,18 +66,28 @@ module.exports = {
     })
   },
   update: function(req, res){
-   Task.update({
-     description: req.body.description
-   }, {
-     where: {
-       id: req.params.id
-     }
-   }).then(response => {
-     res.redirect(`/tasks/${req.params.id}`);
-     }).catch(err =>{
-       console.log(err);
-       res.json(err);
-   })
+    let task = Task.findByPk(req.params.id).then(task => {
+      task.description = req.body.description;
+      task.save().then(() => {
+        let categoriesIds = req.body.categories.split(','); // "1,5, 4" => [1, 5, 4]
+
+        task.addCategories(categoriesIds).then(() => {
+          res.redirect(`/tasks/${task.id}`);
+        })
+      })
+    })
+   //Task.update({
+     //description: req.body.description
+   //}, {
+     //where: {
+       //id: req.params.id
+     //}
+   //}).then(response => {
+     //res.redirect(`/tasks/${req.params.id}`);
+     //}).catch(err =>{
+       //console.log(err);
+       //res.json(err);
+   //})
   },
   new: function(req, res){
     res.render('tasks/new');

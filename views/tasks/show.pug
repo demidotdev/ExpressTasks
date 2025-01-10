@@ -8,5 +8,8 @@ html
             strong Autor: 
             span= task.user.email 
             //- la propiedad "user" está vacía por defecto a menos que se le pase la propiedad "include" al metodo "findByPk" en el controlador (Eager Loading)
+        ul
+            each category in task.categories
+                li= category.name
         form(action=`/tasks/${task.id}?_method=DELETE` method="POST")
             input(type="submit" value="Eliminar")
