@@ -16,16 +16,20 @@ module.exports = (sequelize, DataTypes) => {
 
   Task.associate = function (models) {
     // define association here
-    Task.belongsTo(models.User, { 
+    Task.belongsTo(models.User, {
       as: "user",
-      foreignKey: "userId" 
+      foreignKey: "userId",
     });
     Task.belongsToMany(models.Category, {
       through: "TaskCategories",
       as: "categories",
-      //foreignKey: "taskId" 
+      foreignKey: "categoryId",
     });
-  }
+  };
+
+  //Task.afterCreate(function (task, options) {
+  //socket.emit('new_task', task);
+  //})
   // class Task extends Model {
   //   /**
   //    * Helper method for defining associations.

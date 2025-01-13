@@ -10,6 +10,6 @@ html
             //- la propiedad "user" está vacía por defecto a menos que se le pase la propiedad "include" al metodo "findByPk" en el controlador (Eager Loading)
         ul
             each category in task.categories
-                li= category.name
+                li= category.title
         form(action=`/tasks/${task.id}?_method=DELETE` method="POST")
             input(type="submit" value="Eliminar")
