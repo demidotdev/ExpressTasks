@@ -7,6 +7,8 @@ const { Sequelize } = require("sequelize");
 const overrideMethod = require("method-override");
 const session = require("express-session");
 
+const socketio = require("socket.io");
+
 const app = express();
 
 const tasksRoutes = require('./routes/tasks_routes');
@@ -114,7 +116,9 @@ app.get('/', function (req, res) {
   user: req.user})
 })
 
-app.listen(3000);
+let server = app.listen(3000);
+
+let io = socketio(server);
 
 /*
 Todo esto lo comento porque como ahora pasamos a usar un ORM, no es necesario hacer esta parte

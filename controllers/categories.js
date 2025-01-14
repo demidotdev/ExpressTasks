@@ -33,8 +33,8 @@ module.exports = {
         //});
     //},
     edit: function (req, res) {
-        Category.findByPk(req.params.id).then(function (task) {
-            res.render("categories/edit", { task });
+        Category.findByPk(req.params.id).then(function (category) {
+            res.render("categories/edit", { category: category });
         });
     },
     update: function (req, res) {
