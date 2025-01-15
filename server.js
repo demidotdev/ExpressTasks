@@ -120,6 +120,20 @@ let server = app.listen(3000);
 
 let io = socketio(server);
 
+let usersCount = 0;
+
+io.on('connection', function(socket){
+  usersCount++;
+
+  io.emit('count_updated', {count: usersCount});
+
+  socket.on('disconnect', function(){
+    usersCount--;
+    io.emit('count_updated', {count: usersCount});
+  })
+});
+
+
 /*
 Todo esto lo comento porque como ahora pasamos a usar un ORM, no es necesario hacer esta parte
 
@@ -139,4 +153,3 @@ process.on('SIGINT', function(){ // Cada ve que ejecutamos nuestro programa, un 
 })
 
 */
-
