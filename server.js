@@ -133,7 +133,7 @@ io.on('connection', function(socket){
   })
 });
 
-
+const client = require('./realtime/client');
 /*
 Todo esto lo comento porque como ahora pasamos a usar un ORM, no es necesario hacer esta parte
 
