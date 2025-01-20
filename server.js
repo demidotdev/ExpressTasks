@@ -119,15 +119,37 @@ app.get('/', function (req, res) {
 let server = app.listen(3000);
 
 let io = socketio(server);
+let sockets = {};
 
 let usersCount = 0;
 
 io.on('connection', function(socket){
+
+  let userId = socket.request._query.loggeduser;
+  if(userId) sockets[userId] = socket;
+  //console.log(sockets)
+
   usersCount++;
 
   io.emit('count_updated', {count: usersCount});
 
+  socket.on('new_task', function(data){
+    if(data.userId){
+      let userSocket = sockets[data.userId];
+      if(!userSocket) return;
+    }
+    io.emit('new_task', data);
+  })
+
   socket.on('disconnect', function(){
+
+    //console.log(socket);
+
+    Object.keys(sockets).forEach(userId=>{
+      if(sockets[userId] === socket) delete sockets[userId];
+    })
+    console.log(sockets);
+
     usersCount--;
     io.emit('count_updated', {count: usersCount});
   })

@@ -14,9 +14,12 @@ html(lang='es')
         script(src="/socket.io/socket.io.js")
         //- todo lo que esta despues de un signo "=" se interpreta como una expresión de javascript//- En pug el punto después de script equivale a <script></script> en html
         script. 
-            socket = io.connect();
+            socket = io.connect(window.location.origin,{query:'loggeduser=#{user.id}'});
 
             socket.on('count_updated', function(data){
-                console.log(data);
                 document.getElementById('connected').innerHTML = data.count
+            })
+
+            socket.on('new_task', function(data){
+                console.log(data);
             })
