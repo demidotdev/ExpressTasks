@@ -127,8 +127,10 @@ io.on('connection', function(socket){
 
   let userId = socket.request._query.loggeduser;
   if(userId) sockets[userId] = socket;
-  //console.log(sockets)
+  console.log(sockets);
+  
 
+  //Actualiza usuarios en tiempo real
   usersCount++;
 
   io.emit('count_updated', {count: usersCount});
@@ -137,18 +139,20 @@ io.on('connection', function(socket){
     if(data.userId){
       let userSocket = sockets[data.userId];
       if(!userSocket) return;
+
+      userSocket.emit('new_task', data)
     }
-    io.emit('new_task', data);
   })
 
   socket.on('disconnect', function(){
 
-    //console.log(socket);
+    
 
     Object.keys(sockets).forEach(userId=>{
       if(sockets[userId] === socket) delete sockets[userId];
     })
     console.log(sockets);
+
 
     usersCount--;
     io.emit('count_updated', {count: usersCount});
