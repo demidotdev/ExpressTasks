@@ -149,7 +149,11 @@ io.on('connection', function(socket){
     
 
     Object.keys(sockets).forEach(userId=>{
-      if(sockets[userId] === socket) delete sockets[userId];
+      //if(sockets[userId] === socket) delete sockets[userId];
+      //Arriba es la forma sugerida por Codeium
+
+      let s = sockets[userId];
+      if(s.id == socket.id) sockets[userId] = null;
     })
     console.log(sockets);
 
@@ -158,8 +162,8 @@ io.on('connection', function(socket){
     io.emit('count_updated', {count: usersCount});
   })
 });
+//const client = require('./realtime/client');
 
-const client = require('./realtime/client');
 /*
 Todo esto lo comento porque como ahora pasamos a usar un ORM, no es necesario hacer esta parte
 
