@@ -7,13 +7,7 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
       // hasMany: 1 a muchos
       // belongsTo: 1 a 1
       // belongsToMany: muchos a muchos
@@ -58,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
   User.beforeCreate((user, options) => { // Función que se ejecuta antes de insertar un registro
-    return new Promise((resolve, reject) => { // Promesa
+    return new Promise((resolve, reject) => { 
       if (user.password) { // Si el usuario tiene una contraseña
         bcrypt.hash(user.password, 10, (err, hash) => { // Encriptar la contraseña
           if (err) { // Si hay un error

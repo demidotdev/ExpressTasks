@@ -10,7 +10,6 @@ module.exports = {
 
             if(user){
                 req.session.userId = user.id; // guardamos el id del usuario en la sesion
-//con "req.session" guardamos la informacion de la sesion en la memoria del servidor con el nombre "userId"
             }
             res.json(user);
         })
@@ -23,6 +22,5 @@ module.exports = {
         req.session.destroy(function() {
             res.redirect("/sessions");
         });
-        //res.redirect("/sessions");
     }
 }

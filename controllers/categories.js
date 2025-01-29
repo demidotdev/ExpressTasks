@@ -27,11 +27,6 @@ module.exports = {
             res.render("categories/show", { category: category });
         });
     },
-   // edit: function (req, res) {
-        //Category.findByPk(req.params.id).then(function (category) {
-            //res.render("categories/edit", { category });
-        //});
-    //},
     edit: function (req, res) {
         Category.findByPk(req.params.id).then(function (category) {
             res.render("categories/edit", { category: category });
