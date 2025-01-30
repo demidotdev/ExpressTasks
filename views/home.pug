@@ -1,18 +1,16 @@
 doctype html
 html(lang='es')
     head
-        //- meta(charset='utf-8')
+        meta(charset='utf-8')
         title Bienvenido
     body
         h1= user.email
         p
             span Usuarios conectados:
             span#connected
-        //- todo lo que esta despues de un signo "=" se interpreta como una expresión de javascript 
         form(action='/sessions?_method=DELETE' method='POST')
             input(type='submit' value='Cerrar Sesion')
         script(src="/socket.io/socket.io.js")
-        //- todo lo que esta despues de un signo "=" se interpreta como una expresión de javascript//- En pug el punto después de script equivale a <script></script> en html
         script. 
             socket = io.connect(window.location.origin,{query:'loggeduser=#{user.id}'});
 

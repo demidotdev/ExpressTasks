@@ -25,6 +25,16 @@ module.exports = (sequelize, DataTypes) => {
        modelName: "Task",
      }
    );
+
+const socket = require('../realtime/client');
+
+  Task.afterCreate(function (task, options) {
+  socket.emit('new_task', task);
+  })
+ 
+  return Task;
+};
+
 /* Antigua sintaxis =>
    const Task = sequelize.define(
      "Task",
@@ -47,11 +57,3 @@ module.exports = (sequelize, DataTypes) => {
      });
    };
    */
-const socket = require('../realtime/client');
-
-  Task.afterCreate(function (task, options) {
-  socket.emit('new_task', task);
-  })
- 
-  return Task;
-};
