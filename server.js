@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser"); //Para extraer la data del "body"
+const bodyParser = require("body-parser"); //Para extraer la data del "body"
 const { Sequelize } = require("sequelize");
 const overrideMethod = require("method-override");
 const session = require("express-session");
