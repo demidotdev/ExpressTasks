@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser"); //Para extraer la data del "body"
-const bodyParser = require("body-parser"); //Para extraer la data del "body"
 const { Sequelize } = require("sequelize");
 const overrideMethod = require("method-override");
 const session = require("express-session");
@@ -21,19 +20,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // Para tomar la data del bo
 app.use(overrideMethod("_method"));
 
 app.set("view engine", "pug");//Para integrar nuestro motor de vistas con nuestro servidor
-
-//VER DE PASAR ESTA PARTE A APUNTES PARA PODER BORRARLO DE ACÁ
-/*
-// se comenta porque se usa tasksRoutes 
-// app.get("/tasks", tasks.home); //Creamos la ruta que renderiza nuestro controlador arriba importado
-
-
-// se comenta porque se usa tasksRoutes 
-app.post("/pendientes", function (req, res) 
-
-  res.send("Inserción finalizada");
-});
-*/
 
 app.use(session({ 
   secret: ["98rgj9gamámgpdfog65477865km", "12412mjp9oiupm34535mlnhfvswtfrhj"],
@@ -87,8 +73,6 @@ io.on('connection', function(socket){
     
 
     Object.keys(sockets).forEach(userId=>{
-      //if(sockets[userId] === socket) delete sockets[userId];
-      //Arriba es la forma sugerida por Codeium
 
       let s = sockets[userId];
       if(s.id == socket.id) sockets[userId] = null;
