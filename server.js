@@ -51,7 +51,7 @@ io.on('connection', function(socket){
 
   let userId = socket.request._query.loggeduser;
   if(userId) sockets[userId] = socket;
-  console.log(sockets);
+  console.log(socket.id);
   
 
   //Actualiza usuarios en tiempo real
@@ -73,11 +73,16 @@ io.on('connection', function(socket){
     
 
     Object.keys(sockets).forEach(userId=>{
+      if(sockets[userId] === socket) delete sockets[userId]; //la forma sugerida por Codeium //Funciona mejor!!
 
-      let s = sockets[userId];
-      if(s.id == socket.id) sockets[userId] = null;
+      /*
+      // la forma vista en el curso
+      let s = sockets[userId]; 
+     if(s.id == socket.id) sockets[userId] = null;
+      */
+      console.log(sockets);
     })
-    console.log(sockets);
+    
 
 
     usersCount--;
