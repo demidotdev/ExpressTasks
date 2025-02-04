@@ -73,10 +73,12 @@ io.on('connection', function(socket){
     
 
     Object.keys(sockets).forEach(userId=>{
-      if(sockets[userId] === socket) delete sockets[userId]; //la forma sugerida por Codeium //Funciona mejor!!
+      
+      if(sockets[userId] === socket) delete sockets[userId]; 
+      //la forma sugerida por Codeium //Funciona mejor!!
 
       /*
-      // la forma vista en el curso
+      // la forma vista en el curso, desconecta el server
       let s = sockets[userId]; 
      if(s.id == socket.id) sockets[userId] = null;
       */
@@ -89,4 +91,3 @@ io.on('connection', function(socket){
     io.emit('count_updated', {count: usersCount});
   })
 });
-//const client = require('./realtime/client');

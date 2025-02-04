@@ -34,26 +34,3 @@ const socket = require('../realtime/client');
  
   return Task;
 };
-
-/* Antigua sintaxis =>
-   const Task = sequelize.define(
-     "Task",
-     {
-       description: DataTypes.TEXT,
-     },
-     {}
-   );
-
-   Task.associate = function (models) {
-     // define association here
-     Task.belongsTo(models.User, {
-       as: "user",
-       foreignKey: "userId",
-     });
-     Task.belongsToMany(models.Category, {
-       through: "TaskCategories",
-       as: "categories",
-       foreignKey: "categoryId",
-     });
-   };
-   */
