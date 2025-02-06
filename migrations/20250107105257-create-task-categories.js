@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      //taskId y categoryId son claves foraneas
+      //"taskId" y "categoryId" son claves foraneas
       taskId: {
         type: Sequelize.INTEGER,
         references: {

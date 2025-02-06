@@ -1,19 +1,21 @@
-const express = require("express");
+const express = require("express"); // Para crear el servidor
 const bodyParser = require("body-parser"); //Para extraer la data del "body"
-const { Sequelize } = require("sequelize");
-const overrideMethod = require("method-override");
-const session = require("express-session");
+const { Sequelize } = require("sequelize"); // Para manejar la base de datos
+const overrideMethod = require("method-override");//Para poder usar los verbos PUT y DELETE
+const session = require("express-session"); //Para manejar las sesiones, como el login
 
-const socketio = require("socket.io");
+const socketio = require("socket.io"); //Para manejar las conexiones en tiempo real
 
 const app = express();
 
-const tasksRoutes = require('./routes/tasks_routes');
-const registrationsRoutes = require('./routes/registrations_routes');
-const sessionsRoutes = require("./routes/sessions_routes");
-const categoriesRoutes = require("./routes/categories_routes");
-const findUserMiddleware = require("./middlewares/find_user");
+const tasksRoutes = require('./routes/tasks_routes'); //Para manejar las rutas
+const registrationsRoutes = require('./routes/registrations_routes'); // Para manejar las rutas de registro de nuevos usuarios
+const sessionsRoutes = require("./routes/sessions_routes"); // Para manejar las rutas de las sesiones (usuarios loggeados)
+const categoriesRoutes = require("./routes/categories_routes"); // Para manejar las rutas de las categorias
+const findUserMiddleware = require("./middlewares/find_user"); // Para mostrar el ususario loggeado en el home
 const authUserMiddeleware = require("./middlewares/auth_user");
+
+//El método "use" lo que hace al final es insertar un nuevo Middleware en el stack.
 
 app.use(bodyParser.urlencoded({ extended: true })); // Para tomar la data del body ya formateada
 
@@ -21,12 +23,17 @@ app.use(overrideMethod("_method"));
 
 app.set("view engine", "pug");//Para integrar nuestro motor de vistas con nuestro servidor
 
-app.use(session({ 
+app.use(session({ // Middleware de manejo de sesiones
   secret: ["98rgj9gamámgpdfog65477865km", "12412mjp9oiupm34535mlnhfvswtfrhj"],
   resave: false,  // Indica si se debe reescribir la sesión que aún no ha cambiado
   saveUninitialized: false // Indica si se debe guardar una sesión sin contenido al ser inicializada
 }));
 
+/*
+Se insertan nuestros middlewares despues del middleware de sesiones debemos esperar a que las sesiones 
+sean leídas, y recordemos que JS lee de izquierda a derecha, de arriba hacia abajo, 
+y es en tal orden que se va interpretando el código JS, más allá del efecto de Hoisting. 
+*/
 app.use(findUserMiddleware);
 app.use(authUserMiddeleware);
 
