@@ -15,11 +15,10 @@ const categoriesRoutes = require("./routes/categories_routes"); // Para manejar 
 const findUserMiddleware = require("./middlewares/find_user"); // Para mostrar el ususario loggeado en el home
 const authUserMiddeleware = require("./middlewares/auth_user");
 
-//El método "use" lo que hace al final es insertar un nuevo Middleware en el stack.
-
+//El método "use" inserta un nuevo Middleware en el stack.
 app.use(bodyParser.urlencoded({ extended: true })); // Para tomar la data del body ya formateada
 
-app.use(overrideMethod("_method"));
+app.use(overrideMethod("_method")); // Para poder usar los verbos PUT, PATCH,  DELETE
 
 app.set("view engine", "pug");//Para integrar nuestro motor de vistas con nuestro servidor
 
@@ -29,26 +28,29 @@ app.use(session({ // Middleware de manejo de sesiones
   saveUninitialized: false // Indica si se debe guardar una sesión sin contenido al ser inicializada
 }));
 
-/*
-Se insertan nuestros middlewares despues del middleware de sesiones debemos esperar a que las sesiones 
-sean leídas, y recordemos que JS lee de izquierda a derecha, de arriba hacia abajo, 
-y es en tal orden que se va interpretando el código JS, más allá del efecto de Hoisting. 
-*/
+
+/* Se insertan nuestros middlewares despues del middleware de sesiones debemos esperar a que las sesiones sean leídas, 
+y recordemos que JS lee de izquierda a derecha, de arriba hacia abajo, y es en tal orden que se va interpretando el código JS,
+más allá del efecto de Hoisting.*/
 app.use(findUserMiddleware);
 app.use(authUserMiddeleware);
 
+//Implementamos nuestras rutas
 app.use(tasksRoutes);
 app.use(registrationsRoutes);
 app.use(sessionsRoutes);
 app.use(categoriesRoutes);
 
+/*Implementamos el render de nuestra vista "home" ya que en la carpeta "routes" solo se renderizan las vistas de "tasks", 
+"sessions", "registrations" y "categories" */
 app.get('/', function (req, res) {
   res.render('home', {
   user: req.user})
 })
 
-let server = app.listen(3000);
+let server = app.listen(3000); //Asignamos la escucha del puerto a una variable para poder implementarlo en las sockets
 
+// Sección de manejo de sockets "realtime"
 let io = socketio(server);
 let sockets = {};
 
@@ -57,19 +59,21 @@ let usersCount = 0;
 io.on('connection', function(socket){
 
   let userId = socket.request._query.loggeduser;
-  if(userId) sockets[userId] = socket;
+  if(userId) sockets[userId] = socket; // si hay un usuario loggeado lo guardamos en sockets
   console.log(socket.id);
   
 
   //Actualiza usuarios en tiempo real
   usersCount++;
 
-  io.emit('count_updated', {count: usersCount});
+  // Enviamos la data de los usuarios conectados (es decir , al cliente)
+  io.emit('count_updated', {count: usersCount}); // el 1er argumento es un identificador, el segundo la data
 
+  //Envia la data de una nueva tarea al servidor de sockets
   socket.on('new_task', function(data){
     if(data.userId){
       let userSocket = sockets[data.userId];
-      if(!userSocket) return;
+      if(!userSocket) return; // Si no hay data, retorna vacío
 
       userSocket.emit('new_task', data)
     }
@@ -79,7 +83,7 @@ io.on('connection', function(socket){
 
     
 
-    Object.keys(sockets).forEach(userId=>{
+    Object.keys(sockets).forEach(userId=>{ // Para cerrar sesiones en tiempo real
       
       if(sockets[userId] === socket) delete sockets[userId]; 
       //la forma sugerida por Codeium //Funciona mejor!!
