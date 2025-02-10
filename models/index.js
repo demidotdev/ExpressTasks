@@ -1,5 +1,9 @@
 "use strict";
-
+/**
+ * Los modelos son una forma de interactuar con la base de datos.
+ * Este archivo index.js se encarga de cargar todos los modelos y asociaciones.
+ * Estos archivos son generados de forma automática por el CLI de Sequelize.
+ */
 const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
