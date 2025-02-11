@@ -1,3 +1,4 @@
+// Migración para crear la tabla de ralación de Task y Categories
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      //"taskId" y "categoryId" son claves foraneas
+      //"taskId" y "categoryId" son las claves foraneas
       taskId: {
         type: Sequelize.INTEGER,
         references: {
