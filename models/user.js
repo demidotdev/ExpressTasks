@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Task, { as: "tasks"})
     }
   }
-  //Acá la definición del modelo User
+  //Acá la definición del modelo User, con validaciones en el modelo
   User.init({
     email: { // Sintaxis de objeto json
       type: DataTypes.STRING, // definir tipo de dato
@@ -28,13 +28,13 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
-  User.login = async (email, password) => {
-    const user = await User.findOne({ where: { email } })
+  User.login = async (email, password) => { // Método para loggearse
+    const user = await User.findOne({ where: { email } }) // Buscar un usuario por email
     if (!user) {
-      return null
+      return null 
     }
-    const isValid = await user.authenticatePassword(password)
-    return isValid ? user : null
+    const isValid = await user.authenticatePassword(password) // Comparar contraseñas
+    return isValid ? user : null // Si las contraseñas coinciden, retornar el usuario
   }
   /**
    * Compares the given `password` with the hashed password stored in `password_hash`.
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
    * @returns {Promise<boolean>} A promise that resolves to `true` if the passwords match
    * and rejects with an error if they don't.
    */
-  User.prototype.authenticatePassword = function (password) {
+  User.prototype.authenticatePassword = function (password) { // Método para comparar contraseñas
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, this.password_hash, (err, valid) => {
         if (err)  return reject(err)
@@ -52,9 +52,14 @@ module.exports = (sequelize, DataTypes) => {
     }
 
   User.beforeCreate((user, options) => { // Función que se ejecuta antes de insertar un registro
-    return new Promise((resolve, reject) => { 
+    // user es el objeto que se va a crear después de "beforeCreate"
+    // options son las opciones de la consulta
+    return new Promise((resolve, reject) => { // Crear una promesa para respetar orden de ejecución
       if (user.password) { // Si el usuario tiene una contraseña
         bcrypt.hash(user.password, 10, (err, hash) => { // Encriptar la contraseña
+          //1er argumento: la contraseña a encriptar
+          //2do argumento: el número de veces que se encripta
+          //3er argumento: función de callback
           if (err) { // Si hay un error
             reject(err); // Rechazar la promesa
           } else { // Si no hay error
@@ -63,7 +68,7 @@ module.exports = (sequelize, DataTypes) => {
           }
         }); 
       }
-    })
+    });
   });
   return User;
 };

@@ -9,12 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      email: {
+      email: { // Definimos la columna "email"
         type: Sequelize.STRING,
-        unique: true,
-        allowNull: false
+        unique: true,// Definimos la columna como única, 1 user 1 email
+        allowNull: false // No permitimos valores nulos
       },
-      password_hash: {
+      password_hash: { // Definimos la columna "password_hash" la cual contendrá la contraseña encriptada
         type: Sequelize.STRING
       },
       createdAt: {
