@@ -1,5 +1,5 @@
 'use strict';
-
+// Migración creada para agregar la columna "userId" a la tabla "tasks"
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {

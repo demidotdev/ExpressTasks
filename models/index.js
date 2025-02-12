@@ -54,7 +54,7 @@ Object.keys(db).forEach((modelName) => { // Iteramos sobre los modelos
   }
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+db.sequelize = sequelize; // Agregamos la instancia de Sequelize al objeto db
+db.Sequelize = Sequelize; // Agregamos Sequelize al objeto db
 
-module.exports = db;
+module.exports = db; // Exportamos el objeto db

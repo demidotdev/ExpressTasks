@@ -3,6 +3,8 @@
  * Las migraciones son una forma de realizar cambios en la estructura de la base de datos.
  * Se pueden crear, modificar y eliminar tablas, columnas, índices, etc.
  * Estos archivos son generados de forma automática por el CLI de Sequelize.
+ * Recordar que para ejecutar las migraciones se debe ejecutar el comando "sequelize db:migrate"
+ * y para eliminar las migraciones se debe ejecutar el comando "sequelize db:migrate:undo"
  */
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
