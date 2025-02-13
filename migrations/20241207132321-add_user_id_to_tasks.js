@@ -2,8 +2,8 @@
 // Migración creada para agregar la columna "userId" a la tabla "tasks"
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
+  async up (queryInterface, Sequelize) { // "queryInterface" es un objeto que permite interactuar con la base de datos
+    /** 
      * Add altering commands here.
      *
      * Example:
@@ -13,7 +13,9 @@ module.exports = {
       type: Sequelize.INTEGER,
         references: { // Definimos la clave foránea
             model: { // Definimos el modelo al que hace referencia
-            tableName: 'Users'}, // Definimos la tabla a la que hace referencia
+            tableName: 'Users'}, // Nombre de la tabla en plural para que coincida con la base de datos
+            /*"sequelize", para la llave foránea, asume el nombre de la tabla del modelo que está en singular 
+            y no coincidiría con el nombre de la tabla en plural de la base de datos */
           key: 'id' // Definimos la columna a la que hace referencia
         },
   })

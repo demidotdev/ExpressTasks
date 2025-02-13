@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // hasMany: 1 a muchos
       // belongsTo: 1 a 1
       // belongsToMany: muchos a muchos
-      User.hasMany(models.Task, { as: "tasks"})
+      User.hasMany(models.Task, { as: "tasks"}) // "as" para uniformidad usando mayúsculas y minúsculas
     }
   }
   //Acá la definición del modelo User, con validaciones en el modelo

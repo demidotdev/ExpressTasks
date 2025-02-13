@@ -9,7 +9,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) { // Método para crear la tabla
-    await queryInterface.createTable('tasks', { // Creamos la tabla "tasks"
+    await queryInterface.createTable('Tasks', { // Creamos la tabla "tasks"
       id: { // Definimos la columna "id"
         allowNull: false, // No permitimos valores nulos
         autoIncrement: true, // Permitimos autoincremento
@@ -30,6 +30,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) { // Método para eliminar la tabla
-    await queryInterface.dropTable('tasks'); // Eliminamos la tabla "tasks"
+    await queryInterface.dropTable('Tasks'); // Eliminamos la tabla "tasks"
   }
 };

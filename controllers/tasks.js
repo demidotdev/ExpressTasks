@@ -1,13 +1,13 @@
 const Task = require("../models").Task;
 
 // Creamos nuestras funciones manejadoras:
-// "index" para mostrar la "view" de inicio, 
-// "show" para mostrar los recursos consultados en el servidor, 
-// "create" para crear un nuevo recurso, 
+// "index" para mostrar la "view" de inicio,
+// "show" para mostrar los recursos consultados en el servidor,
+// "create" para crear un nuevo recurso,
 // "new" para crear una nueva instancia de un recurso,
-// "view" donde se muestra el recurso creado, 
-// "edit" para que se muestre la "view" donde editaremos, 
-// "update" para actualizar un recurso y 
+// "view" donde se muestra el recurso creado,
+// "edit" para que se muestre la "view" donde editaremos,
+// "update" para actualizar un recurso y
 // "destroy" para eliminar un recurso.
 module.exports = {
   index: function(req, res){ Task.findAll().then((tasks)=>{
@@ -48,8 +48,8 @@ module.exports = {
   },
   create: function(req, res){
     Task.create({
-      description: req.body.description,
-      userId: req.user.id
+      description: req.body.description, // Le pasamos el "description" del formulario
+      userId: req.user.id // Le pasamos el id del usuario logeado
     }).then(result => {
       res.json(result);
       }).catch(err =>{
