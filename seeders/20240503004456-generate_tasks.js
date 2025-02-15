@@ -13,7 +13,7 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      "tasks", // Aca el nombre de la tabla
+      "Tasks", // Aca el nombre de la tabla
       [
         {
           id: 1,
@@ -45,6 +45,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete("tasks", null, {});
+    await queryInterface.bulkDelete("Tasks", null, {});
   },
 };
