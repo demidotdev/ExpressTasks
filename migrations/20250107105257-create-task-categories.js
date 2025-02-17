@@ -10,13 +10,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      //"taskId" y "categoryId" son las claves foraneas
+      //"taskId" y "categoryId" son las claves foráneas
       taskId: {
         type: Sequelize.INTEGER,
-        references: {
+        references: {// "references" es un objeto que define la clave foránea
+          // "model" es un objeto que define el modelo al que hace referencia
           model: {
-            tableName: 'Tasks'},
-          key: 'id'
+            tableName: 'Tasks'},// "tableName" es el nombre de la tabla en plural
+          key: 'id' // Definimos la columna con el identificador único de la clave foránea
         },
       },
       categoryId: {

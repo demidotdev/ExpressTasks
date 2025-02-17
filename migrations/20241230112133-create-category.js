@@ -10,10 +10,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
+      title: {// Definimos la columna para nombrar la categoría
         type: Sequelize.STRING
       },
-      color: {
+      color: { // Definimos la columna para definir un color
         type: Sequelize.STRING
       },
       createdAt: {
