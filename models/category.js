@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => { // Definimos el modelo "Category"
   class Category extends Model {
     static associate(models) { // Definimos las asociaciones
       Category.belongsToMany(models.Task, { // Definimos la relación "muchos a muchos"
-        through: "TaskCategories", // Definimos la tabla intermedia
+        through: "TaskCategories", // Definimos la tabla intermedia (./taskcategories.js)
         as: "tasks",// Definimos el alias
         foreignKey: "taskId" // Definimos la clave foránea
     });

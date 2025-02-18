@@ -1,4 +1,4 @@
-// Migración para crear la tabla de ralación de Task y Categories
+// Migración para crear la tabla "join" de ralación de Task y Categories
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {

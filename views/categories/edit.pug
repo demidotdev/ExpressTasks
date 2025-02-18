@@ -4,6 +4,8 @@ html
         title Categorías
     body
         h1 Categorías
+        //- Formulario para editar una categoría
+        //- Se envía por POST a la ruta /categories/:id?_method=PUT
         form(action="/categories/#{category.id}?_method=PUT", method="POST")
             input(type="text" name="title" value=category.title placeholder="Título de la categoría")
             input(type="color" value=category.color name="color")

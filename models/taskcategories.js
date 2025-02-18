@@ -1,3 +1,5 @@
+// El objetivo de este archivo es crear la tabla de ralación "muchos a muchos"
+// de Task y Categories, conocida como tabla "join" o tabla intermedia
 'use strict';
 const {
   Model
@@ -10,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   TaskCategories.init({
-    taskId: DataTypes.INTEGER,
+    taskId: DataTypes.INTEGER, // Definimos los campos de las relaciones
     categoryId: DataTypes.INTEGER
   }, {
     sequelize,

@@ -1,5 +1,5 @@
 "use strict";
-
+//Inserción de datos predeterminados en la tabla de tareas (solo en modo development)
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {

@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: "userId",// Definimos al campo "userId" como clave foráneas
         });
         Task.belongsToMany(models.Category, {
-          through: "TaskCategories",
+          through: "TaskCategories", // Definimos la tabla intermedia (./taskcategories.js)
           as: "categories", // "as" para uniformidad usando mayúsculas y minúsculas
-          foreignKey: "categoryId",
+          foreignKey: "categoryId", // Definimos al campo "categoryId" como clave foráneas
         });
       };
     };
