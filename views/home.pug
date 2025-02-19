@@ -7,11 +7,20 @@ html(lang='es')
         h1= user.email
         p
             span Usuarios conectados:
-            span#connected
+            span#connected 
+            //- El span#connected se actualiza con el valor de data.count que se recibe del servidor de websockets
         form(action='/sessions?_method=DELETE' method='POST')
             input(type='submit' value='Cerrar Sesion')
-        script(src="/socket.io/socket.io.js")
-        script. 
+        script(src="/socket.io/socket.io.js") 
+        //- Se incluye el script de socket.io.js para poder usar la librería de websockets
+        script.
+            // Se conecta al servidor de websockets y se le pasa el id del usuario logueado como query string
+            // para poder identificarlo en el servidor y enviarle mensajes específicos
+            // Se escuchan los eventos 'count_updated' y 'new_task' que se emiten desde el servidor
+            // y se actualiza el span#connected y se muestra en consola el objeto data respectivamente
+            // socket es una instancia de io.connect que se conecta al servidor de websockets
+            // window.location.origin es la URL del servidor actual
+        
             socket = io.connect(window.location.origin,{query:'loggeduser=#{user.id}'});
 
             socket.on('count_updated', function(data){

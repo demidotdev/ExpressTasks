@@ -2,7 +2,11 @@ html
     head 
         title Tareas
     body 
+        //- "?_method=PUT" es un query string que indica que se quiere hacer una actualización
+        //- Se envía por POST porque los navegadores no soportan PUT, solo GET y POST
       form(action=`/tasks/${task.id}?_method=PUT` method="POST")
+        //- Formulario para editar una tarea
         input(type="text" name="categories" placeholder="ID de categorías separados por coma")
         textarea(name="description" placeholder="Escribí acá tu tarea")= task.description
+        //- "= task.description" es un shortcut para mostrar siempre el contenido de task.description
         input(type="submit" value="Guardar")
