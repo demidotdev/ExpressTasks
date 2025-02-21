@@ -51,7 +51,7 @@ app.get("/", function (req, res) {
   });
 });
 
-let server = app.listen(process.env.PORT || 3000); //Asignamos la escucha del puerto a una variable para poder implementarlo en las sockets
+let server = app.listen(8080); //Asignamos la escucha del puerto a una variable para poder implementarlo en las sockets
 
 // Sección de manejo de sockets "realtime"
 let io = socketio(server);
