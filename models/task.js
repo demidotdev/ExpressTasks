@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     };
    Task.init(
      {
-       description: DataTypes.TEXT,
+       description: DataTypes.TEXT,// Definimos el campo "description" como tipo texto
      },
      {
        sequelize,
