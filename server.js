@@ -22,14 +22,17 @@ app.use(overrideMethod("_method")); // Para poder usar los verbos PUT, PATCH,  D
 
 app.set("view engine", "pug"); //Para integrar nuestro motor de vistas con nuestro servidor
 
-app.use(
-  session({
-    // Middleware de manejo de sesiones
-    secret: ["98rgj9gamámgpdfog65477865km", "12412mjp9oiupm34535mlnhfvswtfrhj"],
-    resave: false, // Indica si se debe reescribir la sesión que aún no ha cambiado
-    saveUninitialized: false, // Indica si se debe guardar una sesión sin contenido al ser inicializada
-  })
-);
+let sessionConfig = {
+  // Middleware de manejo de sesiones
+  secret: ["98rgj9gamámgpdfog65477865km", "12412mjp9oiupm34535mlnhfvswtfrhj"],
+  resave: false, // Indica si se debe reescribir la sesión que aún no ha cambiado
+  saveUninitialized: false, // Indica si se debe guardar una sesión sin contenido al ser inicializada
+};
+
+if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+  sessionConfig["store"] = new (require("connect-pg-simple")(session))(); // Para guardar las sesiones en la base de datos
+}
+app.use(session(sessionConfig));
 
 /* Se insertan nuestros middlewares despues del middleware de sesiones debemos esperar a que las sesiones sean leídas, 
 y recordemos que JS lee de izquierda a derecha, de arriba hacia abajo, y es en tal orden que se va interpretando el código JS,
