@@ -1,10 +1,16 @@
 //Código para conectar el cliente con el servidor de socket.io y exportar el módulo
-const io = require('socket.io-client');
+const io = require("socket.io-client");
 
-let socket = io.connect('http://localhost:3000', {reconnect: true});
+let host = "http://localhost:8080";
 
-socket.on('connect',function(){  
-    console.log("\n\nSocket connected from NodeJS\n\n")
-})
+if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+  host = "https://your-app.herokuapp.com";
+}
+
+let socket = io.connect(host, { reconnect: true });
+
+socket.on("connect", function () {
+  console.log("\n\nSocket connected from NodeJS\n\n");
+});
 
 module.exports = socket;
