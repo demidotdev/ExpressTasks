@@ -4,7 +4,7 @@ const io = require("socket.io-client");
 let host = "http://localhost:8080";
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
-  host = "https://your-app.herokuapp.com";
+  host = "postgres.railway.internal";
 }
 
 let socket = io.connect(host, { reconnect: true });

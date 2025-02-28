@@ -57,7 +57,7 @@ app.get("/", function (req, res) {
 });
 
 let server = app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${setTimeout(PORT, 500)}`);
 }); //Asignamos la escucha del puerto a una variable para poder implementarlo en las sockets
 
 // Sección de manejo de sockets "realtime"
