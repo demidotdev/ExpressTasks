@@ -21,7 +21,7 @@
     "database_url": "postgres://postgres:HUjKikcIfVrfjnzPsPiEfzwTRJamdkne@postgres/railway",
     "host": "postgres.railway.internal",
     "dialect": "postgres",
-    "port": "5432",
+    "port": { "5432": 5432 },
     "define": {
       "timestamps": true
     }
