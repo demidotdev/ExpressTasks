@@ -20,7 +20,7 @@
     "database": "railway",
     "host": "postgres.railway.internal",
     "dialect": "postgres",
-    "port": 8080,
+    "port": 5432,
     "define": {
       "timestamps": true
     }
