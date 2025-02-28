@@ -8,6 +8,8 @@ const socketio = require("socket.io"); //Para manejar las conexiones en tiempo r
 
 const app = express();
 
+const PORT = process.env.PORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
+
 const tasksRoutes = require("./routes/tasks_routes"); //Para manejar las rutas
 const registrationsRoutes = require("./routes/registrations_routes"); // Para manejar las rutas de registro de nuevos usuarios
 const sessionsRoutes = require("./routes/sessions_routes"); // Para manejar las rutas de las sesiones (usuarios loggeados)
@@ -54,7 +56,9 @@ app.get("/", function (req, res) {
   });
 });
 
-let server = app.listen(8080); //Asignamos la escucha del puerto a una variable para poder implementarlo en las sockets
+let server = app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+}); //Asignamos la escucha del puerto a una variable para poder implementarlo en las sockets
 
 // Sección de manejo de sockets "realtime"
 let io = socketio(server);

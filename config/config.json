@@ -15,10 +15,14 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "username": "postgres",
+    "password": "HUjKikcIfVrfjnzPsPiEfzwTRJamdkne",
+    "database": "railway",
+    "host": "postgres.railway.internal",
+    "dialect": "postgres",
+    "port": "5432",
+    "define": {
+      "timestamps": true
+    }
   }
 }
