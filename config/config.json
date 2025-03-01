@@ -30,6 +30,6 @@
       "timestamps": true
     },
     "DATABASE_URL": "postgresql://postgres:HUjKikcIfVrfjnzPsPiEfzwTRJamdkne@postgres.railway.internal:5432/railway",
-    "port": "5432 || 8080"
+    "port": "${{5432}}"
   }
 }
