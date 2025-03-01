@@ -20,7 +20,7 @@
     "database": "railway",
     "deploy": {
       "numReplicas": 1,
-      "startCommand": "sleep 10 && cd apps/xxxx && pnpm tsx server",
+      "startCommand": "sleep 10 && cd ./server.js && pnpm js server",
       "healthcheckPath": "/",
       "sleepApplication": true,
       "restartPolicyType": "ON_FAILURE",
