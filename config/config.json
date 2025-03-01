@@ -15,10 +15,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "${{Postgres.DATABASE_USER}}",
-    "password": "${{Postgres.DATABASE_PASSWORD}}",
+    "username": "postgres",
+    "password": "HUjKikcIfVrfjnzPsPiEfzwTRJamdkne",
     "database": "railway",
-    "host": "${{postgres.railway.internal}}",
+    "host": "postgres.railway.internal",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
@@ -26,7 +26,10 @@
         "rejectUnauthorized": false
       }
     },
-    "DATABASE_URL": "${{ Postgres.DATABASE_URL }}",
+    "define": {
+      "timestamps": true
+    },
+    "DATABASE_URL": "postgresql://postgres:HUjKikcIfVrfjnzPsPiEfzwTRJamdkne@postgres.railway.internal:5432/railway",
     "port": "5432"
   }
 }
