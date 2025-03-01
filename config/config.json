@@ -20,16 +20,10 @@
     "database": "railway",
     "host": "postgres.railway.internal",
     "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    },
     "define": {
       "timestamps": true
     },
     "DATABASE_URL": "postgresql://postgres:HUjKikcIfVrfjnzPsPiEfzwTRJamdkne@postgres.railway.internal:5432/railway",
-    "port": "${{5432}}"
+    "port": "5432"
   }
 }
