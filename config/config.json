@@ -26,7 +26,7 @@
         "rejectUnauthorized": false
       }
     },
-    "url": "${{RAILWAY_PRIVATE_DOMAIN}}",
+    "url": "${{RAILWAY_PRIVATE_URL}}",
     "port": "${{RAILWAY_POSTGRES_PORT}}"
   }
 }
