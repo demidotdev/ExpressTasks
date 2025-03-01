@@ -27,6 +27,6 @@
       }
     },
     "DATABASE_URL": "${{ Postgres.DATABASE_URL }}",
-    "port": "${{Postgres.DATABASE_PORT || 5432}}"
+    "port": "5432"
   }
 }
