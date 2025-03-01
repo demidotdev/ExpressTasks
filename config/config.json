@@ -17,7 +17,7 @@
   "production": {
     "username": "${{Postgres.DATABASE_USER}}",
     "password": "${{Postgres.DATABASE_PASSWORD}}",
-    "database": "${{Postgres.DATABASE_NAME}}",
+    "database": "/var/lib/postgresql/data/pgdata",
     "host": "postgres.railway.internal",
     "dialect": "postgres",
     "dialectOptions": {
