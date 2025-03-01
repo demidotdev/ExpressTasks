@@ -26,7 +26,7 @@
         "rejectUnauthorized": false
       }
     },
-    "url": "${{ Postgres.DATABASE_URL }}",
+    "DATABASE_URL": "${{ Postgres.DATABASE_URL }}",
     "port": "${{Postgres.DATABASE_PORT}}"
   }
 }
