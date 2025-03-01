@@ -18,7 +18,7 @@
     "username": "postgres",
     "password": "HUjKikcIfVrfjnzPsPiEfzwTRJamdkne",
     "database": "railway",
-    "host": "postgres.railway.internal",
+    "host": "${{RAILWAY_PRIVATE_DOMAIN}}",
     "dialect": "postgres",
     "define": {
       "timestamps": true
