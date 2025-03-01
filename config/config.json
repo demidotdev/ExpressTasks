@@ -20,7 +20,7 @@
     "database": "railway",
     "host": "postgres.railway.internal",
     "dialect": "postgres",
-    "url": "env('DATABASE_URL')",
+    "url": "${{ Postgres.DATABASE_URL }}",
     "port": "5432",
     "define": {
       "timestamps": true
