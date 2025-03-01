@@ -19,7 +19,7 @@
     "password": "${{Postgres.DATABASE_PASSWORD}}",
     "database": "${{Postgres.DATABASE_NAME}}",
     "host": "${{Postgres.DATABASE_HOST}}",
-    "dialect": "${{Postgres.DATABASE_DIALECT}}",
+    "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
         "require": true,
