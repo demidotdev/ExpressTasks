@@ -18,7 +18,7 @@
     "username": "${{Postgres.DATABASE_USER}}",
     "password": "${{Postgres.DATABASE_PASSWORD}}",
     "database": "${{Postgres.DATABASE_NAME}}",
-    "host": "${{Postgres.DATABASE_HOST}}",
+    "host": "postgres.railway.internal",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
