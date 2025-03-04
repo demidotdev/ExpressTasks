@@ -26,7 +26,7 @@
       "restartPolicyType": "ON_FAILURE",
       "restartPolicyMaxRetries": 10
     },
-    "host": "postgres.railway.internal",
+    "host": "${{RAILWAY_PRIVATE_DOMAIN}}",
     "dialect": "postgres",
 
     "define": {
