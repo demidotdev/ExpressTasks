@@ -18,20 +18,7 @@
     "username": "postgres",
     "password": "HUjKikcIfVrfjnzPsPiEfzwTRJamdkne",
     "database": "railway",
-    "deploy": {
-      "numReplicas": 1,
-      "startCommand": "sleep 10 && cd ./server.js && pnpm js server",
-      "healthcheckPath": "/",
-      "sleepApplication": true,
-      "restartPolicyType": "ON_FAILURE",
-      "restartPolicyMaxRetries": 10
-    },
-    "host": "railway-postgres",
-    "dialect": "postgres",
-
-    "define": {
-      "timestamps": true
-    },
-    "port": "5432"
+    "databaseurl": "postgresql://postgres:HUjKikcIfVrfjnzPsPiEfzwTRJamdkne@postgres.railway.internal:5432/railway",
+    "dialect": "postgres"
   }
 }

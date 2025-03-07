@@ -8,7 +8,7 @@ const socketio = require("socket.io"); //Para manejar las conexiones en tiempo r
 
 const app = express();
 
-const PORT = process.env.PORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
+const PORT = process.env.NODE_ENV || 8080; //Para manejar el puerto en el que se ejecutará el servidor
 
 const tasksRoutes = require("./routes/tasks_routes"); //Para manejar las rutas
 const registrationsRoutes = require("./routes/registrations_routes"); // Para manejar las rutas de registro de nuevos usuarios
