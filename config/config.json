@@ -18,7 +18,7 @@
     "username": "postgres",
     "password": "HUjKikcIfVrfjnzPsPiEfzwTRJamdkne",
     "database": "railway",
-    "host": "postgres.railway.internal",
+    "host": "expresstasks-production.up.railway.app",
     "dialect": "postgres",
     "port": 5432
   }
