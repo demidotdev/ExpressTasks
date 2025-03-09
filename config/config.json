@@ -16,9 +16,9 @@
   },
   "production": {
     "username": "postgres",
-    "password": "HUjKikcIfVrfjnzPsPiEfzwTRJamdkne",
-    "database": "railway",
-    "host": "expresstasks-production.up.railway.app",
+    "password": "Tq2xh54NS3fy0BIkHjtN55KNL3W8wIJn",
+    "database": "railwaypostgrestasks",
+    "host": "dpg-cv4oap56l47c73aq241g-a",
     "dialect": "postgres",
     "port": 5432
   }
