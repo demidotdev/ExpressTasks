@@ -18,8 +18,8 @@
     "username": "postgres",
     "password": "HUjKikcIfVrfjnzPsPiEfzwTRJamdkne",
     "database": "railway",
-    "host": "postgres-production-30ee.up.railway.app",
-    "url": "postgresql://postgres:HUjKikcIfVrfjnzPsPiEfzwTRJamdkne@postgres-production-30ee.up.railway.app:5432/railway",
+    "host": "postgres.railway.internal",
+    "url": "postgresql://postgres:HUjKikcIfVrfjnzPsPiEfzwTRJamdkne@postgres.railway.internal:5432/railway",
     "dialect": "postgres"
   }
 }
