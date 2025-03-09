@@ -20,6 +20,7 @@
     "database": "railwaypostgrestasks",
     "host": "dpg-cv4oap56l47c73aq241g-a",
     "dialect": "postgres",
+    "DATABASE_URL": "postgresql://postgrestasks_user:Tq2xh54NS3fy0BIkHjtN55KNL3W8wIJn@dpg-cv4oap56l47c73aq241g-a.oregon-postgres.render.com/postgrestasks",
     "port": 5432
   }
 }
