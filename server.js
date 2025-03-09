@@ -57,7 +57,9 @@ app.get("/", function (req, res) {
 });
 
 let server = app.listen(
-  setInterval(() => port, 500),
+  setInterval(() => {
+    port;
+  }, 500),
   () => {
     console.log(`Server is running on port ${port}`);
   }
