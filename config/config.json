@@ -20,6 +20,7 @@
     "database": "railway",
     "host": "postgres.railway.internal",
     "url": "postgresql://postgres:HUjKikcIfVrfjnzPsPiEfzwTRJamdkne@postgres.railway.internal:5432/railway",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "port": 5432
   }
 }
