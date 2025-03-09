@@ -56,14 +56,9 @@ app.get("/", function (req, res) {
   });
 });
 
-let server = app.listen(
-  setInterval(() => {
-    port;
-  }, 500),
-  () => {
-    console.log(`Server is running on port ${port}`);
-  }
-); //Asignamos la escucha del puerto a una variable para poder implementarlo en las sockets
+let server = app.listen(process.env.PORT || port, () => {
+  console.log(`Server is running on port ${port}`);
+}); //Asignamos la escucha del puerto a una variable para poder implementarlo en las sockets
 
 // Sección de manejo de sockets "realtime"
 let io = socketio(server);
