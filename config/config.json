@@ -18,7 +18,7 @@
     "username": "postgres",
     "password": "HUjKikcIfVrfjnzPsPiEfzwTRJamdkne",
     "database": "railway",
-    "host": "postgres-production-30ee.up.railway.app",
+    "host": "sleep 3 && postgres-production-30ee.up.railway.app",
     "url": "postgresql://postgres:HUjKikcIfVrfjnzPsPiEfzwTRJamdkne@postgres-production-30ee.up.railway.app:5432/railway",
     "dialect": "postgres"
   }
