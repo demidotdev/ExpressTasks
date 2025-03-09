@@ -19,6 +19,8 @@
     "password": "Tq2xh54NS3fy0BIkHjtN55KNL3W8wIJn",
     "database": "railwaypostgrestasks",
     "dialect": "postgres",
-    "DATABASE_URL": "postgresql://postgrestasks_user:Tq2xh54NS3fy0BIkHjtN55KNL3W8wIJn@dpg-cv4oap56l47c73aq241g-a.oregon-postgres.render.com/postgrestasks"
+    "host": "dpg-cv4oap56l47c73aq241g-a",
+    "port": 5432,
+    "url": "postgresql://postgrestasks_user:Tq2xh54NS3fy0BIkHjtN55KNL3W8wIJn@dpg-cv4oap56l47c73aq241g-a.oregon-postgres.render.com/postgrestasks"
   }
 }
