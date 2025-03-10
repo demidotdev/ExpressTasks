@@ -18,7 +18,7 @@ const {
   DB_PASSWORD,
   DB_HOST,
   DB_NAME,
-  DB_PORT,
+  //DB_PORT,
   NODE_ENV = "production",
 } = process.env;
 /**
@@ -38,7 +38,7 @@ if (config.use_env_variable) {
       database: DB_NAME,
       dialect: "postgres",
       host: DB_HOST,
-      port: DB_PORT,
+      port: 5432,
       username: DB_USER,
       password: DB_PASSWORD,
       pool: {
