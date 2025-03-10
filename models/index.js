@@ -20,7 +20,7 @@ const db = {};
  * proporcionada en el archivo config.json.
  */
 let sequelize;
-if (config.process.env.NODE_ENV === "production" || config.use_env_variable) {
+if (process.env.NODE_ENV === "production" || config.use_env_variable) {
   // Verificamos si estamos en el entorno de producción o usamos una variable de entorno
   // Si la configuración usa una variable de entorno
   sequelize = new Sequelize(
