@@ -1,4 +1,7 @@
 "use strict";
+
+import { native } from "pg";
+
 /**
  * La función principal de este archivo es leer todos los modelos en la carpeta "models"
  * y cargarlos en un objeto db. También se encarga de establecer las asociaciones entre los modelos.
@@ -12,7 +15,7 @@ const process = require("process");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
-const db = {};
+export const db = {};
 const {
   DB_USER,
   DB_PASSWORD,
@@ -61,7 +64,12 @@ if (config.use_env_variable) {
     config.database,
     config.username,
     config.password,
-    config
+    config,
+    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+    {
+      logging: false,
+      native: false,
+    }
   );
 }
 
