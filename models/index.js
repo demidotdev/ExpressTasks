@@ -13,6 +13,14 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
+const {
+  DB_USER,
+  DB_PASSWORD,
+  DB_HOST,
+  DB_NAME,
+  //DB_PORT,
+  NODE_ENV = "production",
+} = process.env;
 /**
  * Crea una nueva instancia de Sequelize.
  * Si la configuración usa una variable de entorno, se conecta a la base de datos
@@ -20,14 +28,33 @@ const db = {};
  * proporcionada en el archivo config.json.
  */
 let sequelize;
-if (env === "production" || config.use_env_variable) {
-  // Verificamos si estamos en el entorno de producción o usamos una variable de entorno
+if (config.use_env_variable) {
   // Si la configuración usa una variable de entorno
   sequelize = new Sequelize(
-    process.env[(config.use_env_variable, env)], // Conectamos a la base de datos usando la variable de entorno
+    {
+      database: DB_NAME,
+      dialect: "postgres",
+      host: DB_HOST,
+      port: 5432,
+      username: DB_USER,
+      password: DB_PASSWORD,
+      pool: {
+        max: 3,
+        min: 1,
+        idle: 10000,
+      },
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+        keepAlive: true,
+      },
+      ssl: true,
+    },
+    process.env[config.use_env_variable],
     config
-  ); // Conexión a la base de datos a traves de la
-  // configuración de variables de entorno en el archivo "config.json"
+  ); // Conexión a la base de datos
 } else {
   // Si no usa una variable de entorno
   sequelize = new Sequelize(
