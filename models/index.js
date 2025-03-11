@@ -1,7 +1,4 @@
 "use strict";
-
-import { native } from "pg";
-
 /**
  * La función principal de este archivo es leer todos los modelos en la carpeta "models"
  * y cargarlos en un objeto db. También se encarga de establecer las asociaciones entre los modelos.
@@ -15,13 +12,13 @@ const process = require("process");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
-export const db = {};
+const db = {};
 const {
   DB_USER,
   DB_PASSWORD,
   DB_HOST,
   DB_NAME,
-  //DB_PORT,
+  DB_PORT,
   NODE_ENV = "production",
 } = process.env;
 /**
@@ -33,43 +30,22 @@ const {
 let sequelize;
 if (config.use_env_variable) {
   // Si la configuración usa una variable de entorno
+  sequelize = new Sequelize(process.env[config.use_env_variable], config); // Conexión a la base de datos
+} else {
+  // Si no usa una variable de entorno
   sequelize = new Sequelize(
     {
       database: DB_NAME,
       dialect: "postgres",
       host: DB_HOST,
-      port: 5432,
+      port: DB_PORT,
       username: DB_USER,
       password: DB_PASSWORD,
-      pool: {
-        max: 3,
-        min: 1,
-        idle: 10000,
-      },
-      dialectOptions: {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false,
-        },
-        keepAlive: true,
-      },
-      ssl: true,
     },
-    process.env[config.use_env_variable],
-    config
-  ); // Conexión a la base de datos
-} else {
-  // Si no usa una variable de entorno
-  sequelize = new Sequelize(
     config.database,
     config.username,
     config.password,
-    config,
-    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-    {
-      logging: false,
-      native: false,
-    }
+    config
   );
 }
 
