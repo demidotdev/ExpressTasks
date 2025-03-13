@@ -34,14 +34,6 @@ if (config.use_env_variable) {
 } else {
   // Si no usa una variable de entorno
   sequelize = new Sequelize(
-    {
-      database: DB_NAME,
-      dialect: "postgres",
-      host: DB_HOST,
-      port: DB_PORT,
-      username: DB_USER,
-      password: DB_PASSWORD,
-    },
     config.database,
     config.username,
     config.password,

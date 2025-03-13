@@ -3,7 +3,7 @@
     "username": null,
     "password": null,
     "database": "proyecto_backend",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "sqlite",
     "storage": "./proyecto-backend.sqlite3"
   },
@@ -15,12 +15,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "postgres",
+    "username": "postgrespostgrestasks_user",
     "password": "Tq2xh54NS3fy0BIkHjtN55KNL3W8wIJn",
-    "database": "railwaypostgrestasks",
-    "host": "dpg-cv4oap56l47c73aq241g-a",
-    "dialect": "PostgresDialect",
-    "databaseurl": "postgresql://postgrestasks_user:Tq2xh54NS3fy0BIkHjtN55KNL3W8wIJn@dpg-cv4oap56l47c73aq241g-a.oregon-postgres.render.com/postgrestasks",
+    "database": "postgrestasks",
+    "dialect": "postgres",
     "port": "5432"
   }
 }
