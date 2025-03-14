@@ -24,7 +24,14 @@ const db = {};
 let sequelize;
 if (config.use_env_variable) {
   // Si la configuración usa una variable de entorno
-  sequelize = new Sequelize(process.env[config.use_env_variable], config); // Conexión a la base de datos
+  sequelize = new Sequelize(
+    process.env[config.use_env_variable],
+    {
+      host: config.host,
+      dialect: PostgresDialect,
+    },
+    config
+  ); // Conexión a la base de datos
 } else {
   // Si no usa una variable de entorno
   sequelize = new Sequelize(
