@@ -9,7 +9,6 @@ const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
 const process = require("process");
-const { PostgresDialect } = require("@sequelize/postgres");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
@@ -24,24 +23,13 @@ const db = {};
 let sequelize;
 if (config.use_env_variable) {
   // Si la configuración usa una variable de entorno
-  sequelize = new Sequelize(
-    process.env[config.use_env_variable],
-    {
-      host: config.host,
-      dialect: PostgresDialect,
-    },
-    config
-  ); // Conexión a la base de datos
+  sequelize = new Sequelize(process.env[config.use_env_variable], config); // Conexión a la base de datos
 } else {
   // Si no usa una variable de entorno
   sequelize = new Sequelize(
     config.database,
     config.username,
     config.password,
-    {
-      host: config.host,
-      dialect: PostgresDialect,
-    },
     config
   );
 }
