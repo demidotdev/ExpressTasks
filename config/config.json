@@ -19,8 +19,12 @@
     "password": "Tq2xh54NS3fy0BIkHjtN55KNL3W8wIJn",
     "database": "postgrestasks",
     "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    },
     "port": "5432",
-    "ssl": true,
     "clientMinMessages": "notice",
     "host": "dpg-cv4oap56l47c73aq241g-a.oregon-postgres.render.com"
   }
