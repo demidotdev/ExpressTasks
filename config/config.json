@@ -24,7 +24,6 @@
         "rejectUnauthorized": false
       }
     },
-    "port": "5432",
     "clientMinMessages": "notice",
     "host": "dpg-cv4oap56l47c73aq241g-a.oregon-postgres.render.com"
   }
