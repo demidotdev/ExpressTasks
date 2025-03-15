@@ -25,6 +25,7 @@
       }
     },
     "clientMinMessages": "notice",
+    "port": 5432,
     "host": "dpg-cv4oap56l47c73aq241g-a.oregon-postgres.render.com"
   }
 }
