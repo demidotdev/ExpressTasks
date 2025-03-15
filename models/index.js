@@ -13,7 +13,7 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
-const PostgresDialect = require("@sequelize/postgres").dialects.postgres;
+const PostgresDialect = require("@sequelize/postgres");
 /**
  * Crea una nueva instancia de Sequelize.
  * Si la configuración usa una variable de entorno, se conecta a la base de datos
