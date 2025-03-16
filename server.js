@@ -1,6 +1,6 @@
 const express = require("express"); // Para crear el servidor
 const bodyParser = require("body-parser"); //Para extraer la data del "body"
-const { Sequelize } = require("sequelize"); // Para manejar la base de datos
+//const { Sequelize } = require("sequelize"); // Para manejar la base de datos
 const overrideMethod = require("method-override"); //Para poder usar los verbos PUT y DELETE
 const session = require("express-session"); //Para manejar las sesiones, como el login
 
@@ -32,7 +32,7 @@ let sessionConfig = {
 };
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
-  sessionConfig["store"] = new (require("connect-pg-simple")(session))(); // Para guardar las sesiones en la base de datos
+  sessionConfig["store"] = new (require("@sequelize/postgress")(session))(); // Para guardar las sesiones en la base de datos
 }
 app.use(session(sessionConfig));
 
