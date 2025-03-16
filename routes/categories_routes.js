@@ -9,7 +9,7 @@ import {
   show,
   update,
   destroy,
-} from "../controllers/categories";
+} from "../controllers/categories.js";
 
 let router = Router();
 

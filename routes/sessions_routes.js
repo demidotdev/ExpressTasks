@@ -1,7 +1,7 @@
 //Archivo que contiene las rutas de la API para las sesiones
 import { Router } from "express";
 
-import { newSession, create, destroy } from "../controllers/sessions";
+import { newSession, create, destroy } from "../controllers/sessions.js";
 
 let router = Router();
 

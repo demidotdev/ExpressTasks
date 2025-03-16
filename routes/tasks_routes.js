@@ -8,7 +8,7 @@ import {
   show,
   update,
   destroy,
-} from "../controllers/tasks"; // Importamos el controlador
+} from "../controllers/tasks.js"; // Importamos el controlador
 
 let router = Router();
 

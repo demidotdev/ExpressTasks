@@ -1,7 +1,7 @@
 // Archivo que contiene las rutas de la API para los registros
 import { Router } from "express";
 
-import { newUser, create } from "../controllers/registrations";
+import { newUser, create } from "../controllers/registrations.js";
 
 let router = Router();
 
