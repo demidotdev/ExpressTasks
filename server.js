@@ -10,12 +10,12 @@ const app = express();
 
 const port = process.env.PORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
 
-import tasksRoutes from "./routes/tasks_routes"; //Para manejar las rutas
-import registrationsRoutes from "./routes/registrations_routes"; // Para manejar las rutas de registro de nuevos usuarios
-import sessionsRoutes from "./routes/sessions_routes"; // Para manejar las rutas de las sesiones (usuarios loggeados)
-import categoriesRoutes from "./routes/categories_routes"; // Para manejar las rutas de las categorias
-import findUserMiddleware from "./middlewares/find_user"; // Para mostrar el ususario loggeado en el home
-import authUserMiddeleware from "./middlewares/auth_user";
+import tasksRoutes from "./routes/tasks_routes.js"; //Para manejar las rutas
+import registrationsRoutes from "./routes/registrations_routes.js"; // Para manejar las rutas de registro de nuevos usuarios
+import sessionsRoutes from "./routes/sessions_routes.js"; // Para manejar las rutas de las sesiones (usuarios loggeados)
+import categoriesRoutes from "./routes/categories_routes.js"; // Para manejar las rutas de las categorias
+import findUserMiddleware from "./middlewares/find_user.js"; // Para mostrar el ususario loggeado en el home
+import authUserMiddeleware from "./middlewares/auth_user.js";
 import PostgresStore from "@sequelize/postgres";
 
 //El método "use" inserta un nuevo Middleware en el stack.
