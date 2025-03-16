@@ -5,16 +5,17 @@
  * Este archivo index.js se encarga de cargar todos los modelos y asociaciones.
  * Estos archivos son generados de forma automática por el CLI de Sequelize.
  */
-const fs = require("fs");
-const path = require("path");
-const Sequelize = require("sequelize");
-const process = require("process");
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "development";
+import { readdirSync } from "fs";
+import { basename as _basename, join } from "path";
+import Sequelize, { DataTypes } from "sequelize";
+import { env as _env } from "process";
+const basename = _basename(__filename);
+const env = _env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
-const PostgresDialect = require("sequelize/postgres");
+import PostgresDialect from "@sequelize/postgres";
 /**
+ *
  * Crea una nueva instancia de Sequelize.
  * Si la configuración usa una variable de entorno, se conecta a la base de datos
  * usando la variable de entorno. De lo contrario, se conecta usando la configuración
@@ -24,7 +25,7 @@ let sequelize;
 if (config.use_env_variable) {
   // Si la configuración usa una variable de entorno
   sequelize = new Sequelize(
-    process.env[config.use_env_variable],
+    _env[config.use_env_variable],
     { dialect: PostgresDialect },
     config
   ); // Conexión a la base de datos
@@ -38,7 +39,7 @@ if (config.use_env_variable) {
   );
 }
 
-fs.readdirSync(__dirname) // Leemos el directorio actual
+readdirSync(__dirname) // Leemos el directorio actual
   .filter((file) => {
     return (
       file.indexOf(".") !== 0 &&
@@ -48,10 +49,10 @@ fs.readdirSync(__dirname) // Leemos el directorio actual
     );
   })
   .forEach((file) => {
-    const model = require(path.join(__dirname, file))(
+    const model = require(join(__dirname, file))(
       // Importamos el modelo
       sequelize,
-      Sequelize.DataTypes
+      DataTypes
     );
     db[model.name] = model; // Agregamos el modelo al objeto db
   });
@@ -67,4 +68,4 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize; // Agregamos la instancia de sequelize al objeto db
 db.Sequelize = Sequelize; // Agregamos Sequelize al objeto db
 
-module.exports = db; // Exportamos el objeto db
+export default db; // Exportamos el objeto db

@@ -1,26 +1,23 @@
-const User = require("../models").User;
+const User = require("../models").default.User;
 
-module.exports = {
-    new: (req, res) => {
-        res.render("sessions/new");
-    },
-    create: (req, res) => {
-        User.login(req.body.email, req.body.password)
-        .then(user => {
-
-            if(user){
+export function newSession(req, res) {
+    res.render("sessions/newSession");
+}
+export function create(req, res) {
+    User.login(req.body.email, req.body.password)
+        .then((user) => {
+            if (user) {
                 req.session.userId = user.id; // guardamos el id del usuario en la sesion
             }
             res.json(user);
         })
-        .catch(err => {
+        .catch((err) => {
             console.log(err);
             res.json(err);
         });
-    },
-    destroy: (req, res) => {
-        req.session.destroy(function() {
-            res.redirect("/sessions");
-        });
-    }
+}
+export function destroy(req, res) {
+    req.session.destroy(function () {
+        res.redirect("/sessions");
+    });
 }

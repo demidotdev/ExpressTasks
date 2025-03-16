@@ -1,13 +1,14 @@
 //Archivo que contiene las rutas de la API para las sesiones
-const express = require('express')
+import { Router } from "express";
 
-let SessionsController = require('../controllers/sessions')
+import { newSession, create, destroy } from "../controllers/sessions";
 
-let router = express.Router()
+let router = Router();
 
-router.route('/sessions') // Opciones para crear y destruir una sesión
-.get(SessionsController.new)
-.post(SessionsController.create)
-.delete(SessionsController.destroy)
+router
+  .route("/sessions") // Opciones para crear y destruir una sesión
+  .get(newSession)
+  .post(create)
+  .delete(destroy);
 
-module.exports = router
+export default router;

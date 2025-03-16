@@ -1,14 +1,14 @@
 // Archivo que contiene las rutas de la API para los registros
-const express = require('express')
+import { Router } from "express";
 
-let RegistrationsController = require('../controllers/registrations')
+import { newUser, create } from "../controllers/registrations";
 
-let router = express.Router();
+let router = Router();
 
 // Ruta para mostrar el formulario de registro
-router.get('/signup', RegistrationsController.new) 
+router.get("/signup", newUser);
 
 // Ruta a la que redirecciona una vez creado el usuario
-router.route('/users').post(RegistrationsController.create)
+router.route("/users").post(create);
 
-module.exports = router
+export default router;

@@ -1,7 +1,7 @@
 "use strict";
 // Usando sintaxis CJS (ver diferencia con ESM acá https://nodejs.org/docs/latest/api/packages.html)
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+import { Model } from "sequelize";
+export default (sequelize, DataTypes) => {
   class Task extends Model {
     static associate(models) {
       Task.belongsTo(models.User, {

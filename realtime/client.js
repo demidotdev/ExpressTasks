@@ -1,5 +1,5 @@
 //Código para conectar el cliente con el servidor de socket.io y exportar el módulo
-const io = require("socket.io-client");
+import { connect } from "socket.io-client";
 
 let host = "http://localhost:8080 ";
 
@@ -7,10 +7,10 @@ if (process.env.NODE_ENV === "production") {
   host = process.env.HOST;
 }
 
-let socket = io.connect(host, { reconnect: true });
+let socket = connect(host, { reconnect: true });
 
 socket.on("connect", function () {
   console.log("\n\nSocket connected from NodeJS\n\n");
 });
 
-module.exports = socket;
+export default socket;

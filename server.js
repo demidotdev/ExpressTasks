@@ -1,25 +1,25 @@
-const express = require("express"); // Para crear el servidor
-const bodyParser = require("body-parser"); //Para extraer la data del "body"
+import express from "express"; // Para crear el servidor
+import { urlencoded } from "body-parser"; //Para extraer la data del "body"
 //const { Sequelize } = require("sequelize"); // Para manejar la base de datos
-const overrideMethod = require("method-override"); //Para poder usar los verbos PUT y DELETE
-const session = require("express-session"); //Para manejar las sesiones, como el login
+import overrideMethod from "method-override"; //Para poder usar los verbos PUT y DELETE
+import session from "express-session"; //Para manejar las sesiones, como el login
 
-const socketio = require("socket.io"); //Para manejar las conexiones en tiempo real
+import socketio from "socket.io"; //Para manejar las conexiones en tiempo real
 
 const app = express();
 
 const port = process.env.PORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
 
-const tasksRoutes = require("./routes/tasks_routes"); //Para manejar las rutas
-const registrationsRoutes = require("./routes/registrations_routes"); // Para manejar las rutas de registro de nuevos usuarios
-const sessionsRoutes = require("./routes/sessions_routes"); // Para manejar las rutas de las sesiones (usuarios loggeados)
-const categoriesRoutes = require("./routes/categories_routes"); // Para manejar las rutas de las categorias
-const findUserMiddleware = require("./middlewares/find_user"); // Para mostrar el ususario loggeado en el home
-const authUserMiddeleware = require("./middlewares/auth_user");
-const PostgresStore = require("@sequelize/postgres");
+import tasksRoutes from "./routes/tasks_routes"; //Para manejar las rutas
+import registrationsRoutes from "./routes/registrations_routes"; // Para manejar las rutas de registro de nuevos usuarios
+import sessionsRoutes from "./routes/sessions_routes"; // Para manejar las rutas de las sesiones (usuarios loggeados)
+import categoriesRoutes from "./routes/categories_routes"; // Para manejar las rutas de las categorias
+import findUserMiddleware from "./middlewares/find_user"; // Para mostrar el ususario loggeado en el home
+import authUserMiddeleware from "./middlewares/auth_user";
+import PostgresStore from "@sequelize/postgres";
 
 //El método "use" inserta un nuevo Middleware en el stack.
-app.use(bodyParser.urlencoded({ extended: true })); // Para tomar la data del body ya formateada
+app.use(urlencoded({ extended: true })); // Para tomar la data del body ya formateada
 
 app.use(overrideMethod("_method")); // Para poder usar los verbos PUT, PATCH,  DELETE
 

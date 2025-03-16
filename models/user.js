@@ -1,9 +1,9 @@
 "use strict";
 
-const bcrypt = require("bcrypt");
+import { compare, hash as _hash } from "bcrypt";
 
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+import { Model } from "sequelize";
+export default (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
       // hasMany: 1 a muchos
@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
   User.prototype.authenticatePassword = function (password) {
     // Método para comparar contraseñas
     return new Promise((resolve, reject) => {
-      bcrypt.compare(password, this.password_hash, (err, valid) => {
+      compare(password, this.password_hash, (err, valid) => {
         if (err) return reject(err);
         resolve(valid);
       });
@@ -65,7 +65,7 @@ module.exports = (sequelize, DataTypes) => {
       // Crear una promesa para respetar orden de ejecución
       if (user.password) {
         // Si el usuario tiene una contraseña
-        bcrypt.hash(user.password, 10, (err, hash) => {
+        _hash(user.password, 10, (err, hash) => {
           // Encriptar la contraseña
           //1er argumento: la contraseña a encriptar
           //2do argumento: el número de veces que se encripta
