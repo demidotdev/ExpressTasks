@@ -13,7 +13,7 @@ const basename = _basename(__filename);
 const env = _env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
-import PostgresDialect from "@sequelize/postgres";
+import PostgresDialect from "sequelize/postgres";
 /**
  *
  * Crea una nueva instancia de Sequelize.
