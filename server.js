@@ -16,6 +16,7 @@ const sessionsRoutes = require("./routes/sessions_routes"); // Para manejar las 
 const categoriesRoutes = require("./routes/categories_routes"); // Para manejar las rutas de las categorias
 const findUserMiddleware = require("./middlewares/find_user"); // Para mostrar el ususario loggeado en el home
 const authUserMiddeleware = require("./middlewares/auth_user");
+import PostgresStore from "@sequelize/postgress";
 
 //El método "use" inserta un nuevo Middleware en el stack.
 app.use(bodyParser.urlencoded({ extended: true })); // Para tomar la data del body ya formateada
@@ -32,7 +33,7 @@ let sessionConfig = {
 };
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
-  sessionConfig["store"] = new (require("@sequelize/postgress")(session))(); // Para guardar las sesiones en la base de datos
+  sessionConfig["store"] = new (require(PostgresStore)(session))(); // Para guardar las sesiones en la base de datos
 }
 app.use(session(sessionConfig));
 
