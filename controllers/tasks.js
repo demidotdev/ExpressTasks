@@ -1,4 +1,4 @@
-import Task from "../models";
+import Task from "../models/task.js";
 
 // Creamos nuestras funciones manejadoras:
 // "index" para mostrar la "view" de inicio,

@@ -1,4 +1,4 @@
-import User from "../models";
+import User from "../models/user";
 
 export function newUser(req, res) {
     res.render("registrations/new");

@@ -1,4 +1,4 @@
-import User from "../models";
+import User from "../models/user.js";
 
 export function newSession(req, res) {
     res.render("sessions/newSession");
