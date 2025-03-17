@@ -1,5 +1,4 @@
-const Category = require("../models").default.Category;
-
+import Category from "../models/Category.js";
 export function create(req, res) {
     Category.create({
         //creo nuevas categorias en la tabla "Categories"

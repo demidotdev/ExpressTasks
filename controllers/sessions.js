@@ -1,4 +1,4 @@
-const User = require("../models").default.User;
+import User from "../models";
 
 export function newSession(req, res) {
     res.render("sessions/newSession");

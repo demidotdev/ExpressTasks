@@ -1,4 +1,4 @@
-const Task = require("../models").default.Task;
+import Task from "../models";
 
 // Creamos nuestras funciones manejadoras:
 // "index" para mostrar la "view" de inicio,
