@@ -1,5 +1,5 @@
 import express from "express"; // Para crear el servidor
-import { urlencoded } from "body-parser"; //Para extraer la data del "body"
+const urlencoded = require("body-parser"); //Para extraer la data del "body"
 //const { Sequelize } = require("sequelize"); // Para manejar la base de datos
 import overrideMethod from "method-override"; //Para poder usar los verbos PUT y DELETE
 import session from "express-session"; //Para manejar las sesiones, como el login
