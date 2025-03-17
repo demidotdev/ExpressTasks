@@ -4,7 +4,7 @@ import { urlencoded } from "body-parser"; //Para extraer la data del "body"
 import overrideMethod from "method-override"; //Para poder usar los verbos PUT y DELETE
 import session from "express-session"; //Para manejar las sesiones, como el login
 
-import { socketio } from "socket.io"; //Para manejar las conexiones en tiempo real
+import { sockets } from "socket.io"; //Para manejar las conexiones en tiempo real
 
 const app = express();
 
