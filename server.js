@@ -4,7 +4,7 @@ import { urlencoded } from "body-parser"; //Para extraer la data del "body"
 import overrideMethod from "method-override"; //Para poder usar los verbos PUT y DELETE
 import session from "express-session"; //Para manejar las sesiones, como el login
 
-import socketio from "socket.io"; //Para manejar las conexiones en tiempo real
+import { socketio } from "socket.io"; //Para manejar las conexiones en tiempo real
 
 const app = express();
 
@@ -16,6 +16,7 @@ import sessionsRoutes from "./routes/sessions_routes.js"; // Para manejar las ru
 import categoriesRoutes from "./routes/categories_routes.js"; // Para manejar las rutas de las categorias
 import findUserMiddleware from "./middlewares/find_user.js"; // Para mostrar el ususario loggeado en el home
 import authUserMiddeleware from "./middlewares/auth_user.js";
+import { PostgresStore } from "@isequelize/postgres";
 
 //El método "use" inserta un nuevo Middleware en el stack.
 app.use(urlencoded({ extended: true })); // Para tomar la data del body ya formateada
