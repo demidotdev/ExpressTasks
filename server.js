@@ -16,7 +16,6 @@ import sessionsRoutes from "./routes/sessions_routes.js"; // Para manejar las ru
 import categoriesRoutes from "./routes/categories_routes.js"; // Para manejar las rutas de las categorias
 import findUserMiddleware from "./middlewares/find_user.js"; // Para mostrar el ususario loggeado en el home
 import authUserMiddeleware from "./middlewares/auth_user.js";
-import PostgresStore from "sequelize/postgres";
 
 //El método "use" inserta un nuevo Middleware en el stack.
 app.use(urlencoded({ extended: true })); // Para tomar la data del body ya formateada
