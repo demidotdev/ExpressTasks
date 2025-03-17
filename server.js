@@ -4,7 +4,7 @@ import { urlencoded } from "body-parser"; //Para extraer la data del "body"
 import overrideMethod from "method-override"; //Para poder usar los verbos PUT y DELETE
 import session from "express-session"; //Para manejar las sesiones, como el login
 
-import { sockets } from "socket.io"; //Para manejar las conexiones en tiempo real
+import { Server } from "socket.io"; //Para manejar las conexiones en tiempo real
 
 const app = express();
 
@@ -58,17 +58,17 @@ app.get("/", function (req, res) {
 
 let server = app.listen(process.env.PORT || port, () => {
   console.log(`Server is running on port ${port}`);
-}); //Asignamos la escucha del puerto a una variable para poder implementarlo en las sockets
+}); //Asignamos la escucha del puerto a una variable para poder implementarlo en las Serversockets
 
-// Sección de manejo de sockets "realtime"
-let io = socketio(server);
-let sockets = {};
+// Sección de manejo de Serversockets "realtime"
+let io = Server(server);
+let Serversockets = {};
 
 let usersCount = 0;
 
 io.on("connection", function (socket) {
   let userId = socket.request._query.loggeduser;
-  if (userId) sockets[userId] = socket; // si hay un usuario loggeado lo guardamos en sockets
+  if (userId) Serversockets[userId] = socket; // si hay un usuario loggeado lo guardamos en Serversockets
   console.log(socket.id);
 
   //Actualiza usuarios en tiempo real
@@ -77,10 +77,10 @@ io.on("connection", function (socket) {
   // Enviamos la data de los usuarios conectados (es decir , al cliente)
   io.emit("count_updated", { count: usersCount }); // el 1er argumento es un identificador, el segundo la data
 
-  //Envia la data de una nueva tarea al servidor de sockets
+  //Envia la data de una nueva tarea al servidor de Serversockets
   socket.on("new_task", function (data) {
     if (data.userId) {
-      let userSocket = sockets[data.userId];
+      let userSocket = Serversockets[data.userId];
       if (!userSocket) return; // Si no hay data, retorna vacío
 
       userSocket.emit("new_task", data);
@@ -88,18 +88,18 @@ io.on("connection", function (socket) {
   });
 
   socket.on("disconnect", function () {
-    Object.keys(sockets).forEach((userId) => {
+    Object.keys(Serversockets).forEach((userId) => {
       // Para cerrar sesiones en tiempo real
 
-      if (sockets[userId] === socket) delete sockets[userId];
+      if (Serversockets[userId] === socket) delete Serversockets[userId];
       //la forma sugerida por Codeium //Funciona mejor!!
 
       /*
       // la forma vista en el curso, desconecta el server
-      let s = sockets[userId]; 
-     if(s.id == socket.id) sockets[userId] = null;
+      let s = Serversockets[userId]; 
+     if(s.id == socket.id) Serversockets[userId] = null;
       */
-      console.log(sockets);
+      console.log(Serversockets);
     });
 
     usersCount--;
