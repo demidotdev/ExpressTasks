@@ -1,5 +1,5 @@
 import express from "express"; // Para crear el servidor
-import urlencoded from "body-parser"; //Para extraer la data del "body"
+import { urlencoded } from "body-parser"; //Para extraer la data del "body"
 //const { Sequelize } = require("sequelize"); // Para manejar la base de datos
 import overrideMethod from "method-override"; //Para poder usar los verbos PUT y DELETE
 import session from "express-session"; //Para manejar las sesiones, como el login
@@ -8,7 +8,7 @@ import { Server } from "socket.io"; //Para manejar las conexiones en tiempo real
 
 const app = express();
 
-const port = process.env.PORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
+const port = process.env.POSTGRES_PORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
 
 import tasksRoutes from "./routes/tasks_routes.js"; //Para manejar las rutas
 import registrationsRoutes from "./routes/registrations_routes.js"; // Para manejar las rutas de registro de nuevos usuarios
@@ -57,7 +57,7 @@ app.get("/", function (req, res) {
   });
 });
 
-let server = app.listen(process.env.PORT || port, () => {
+let server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 }); //Asignamos la escucha del puerto a una variable para poder implementarlo en las Serversockets
 
@@ -98,9 +98,9 @@ io.on("connection", function (socket) {
       /*
       // la forma vista en el curso, desconecta el server
       let s = Serversockets[userId]; 
-     if(s.id == socket.id) Serversockets[userId] = null;
-      */
+    if(s.id == socket.id) Serversockets[userId] = null;
       console.log(Serversockets);
+      */
     });
 
     usersCount--;

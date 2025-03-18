@@ -5,32 +5,29 @@
  * Este archivo index.js se encarga de cargar todos los modelos y asociaciones.
  * Estos archivos son generados de forma automática por el CLI de Sequelize.
  */
-import { readdirSync } from "fs";
-import { basename as _basename, join } from "path";
-import Sequelize, { DataTypes } from "sequelize";
-import { env as _env } from "process";
-const basename = _basename(__filename);
-const env = _env.NODE_ENV || "development";
+const fs = require("fs");
+const path = require("path");
+const Sequelize = require("sequelize");
+const process = require("process");
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
-import PostgresDialect from "sequelize/postgres";
-import { Pool } from "pg";
+import { PostgresDialect } from "@sequelize/postgres";
 
-const pool = new Pool(config);
 /**
- *
  * Crea una nueva instancia de Sequelize.
  * Si la configuración usa una variable de entorno, se conecta a la base de datos
  * usando la variable de entorno. De lo contrario, se conecta usando la configuración
  * proporcionada en el archivo config.json.
  */
 let sequelize;
-if (pool._query.use_env_variable) {
+if (config.use_env_variable) {
   // Si la configuración usa una variable de entorno
   sequelize = new Sequelize(
-    _env[pool._query.use_env_variable],
     { dialect: PostgresDialect },
-    pool._query
+    process.env[config.use_env_variable],
+    config
   ); // Conexión a la base de datos
 } else {
   // Si no usa una variable de entorno
@@ -38,11 +35,11 @@ if (pool._query.use_env_variable) {
     config.database,
     config.username,
     config.password,
-    pool._query
+    config
   );
 }
 
-readdirSync(__dirname) // Leemos el directorio actual
+fs.readdirSync(__dirname) // Leemos el directorio actual
   .filter((file) => {
     return (
       file.indexOf(".") !== 0 &&
@@ -52,10 +49,10 @@ readdirSync(__dirname) // Leemos el directorio actual
     );
   })
   .forEach((file) => {
-    const model = require(join(__dirname, file))(
+    const model = require(path.join(__dirname, file))(
       // Importamos el modelo
       sequelize,
-      DataTypes
+      Sequelize.DataTypes
     );
     db[model.name] = model; // Agregamos el modelo al objeto db
   });
@@ -71,4 +68,4 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize; // Agregamos la instancia de sequelize al objeto db
 db.Sequelize = Sequelize; // Agregamos Sequelize al objeto db
 
-export default db; // Exportamos el objeto db
+module.exports = db; // Exportamos el objeto db
