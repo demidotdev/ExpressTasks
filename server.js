@@ -32,7 +32,7 @@ let sessionConfig = {
 };
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
-  sessionConfig["store"] = new (require("connect-pg-simple")(session))(); // Para guardar las sesiones en la base de datos
+  sessionConfig["store"] = new (import("connect-pg-simple")(session))(); // Para guardar las sesiones en la base de datos
 }
 app.use(session(sessionConfig));
 
