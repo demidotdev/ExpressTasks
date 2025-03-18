@@ -1,4 +1,4 @@
-const User = require("../models").default.User;
+const User = "../models/user.js";
 
 export default (req, res, next) => {
   if (!req.session.userId) return next(); // Si el usuario no está loggeado, se ejecuta el siguiente middleware
