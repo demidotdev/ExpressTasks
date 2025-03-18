@@ -14,6 +14,9 @@ const env = _env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 import PostgresDialect from "sequelize/postgres";
+import { Pool } from "pg";
+
+const pool = new Pool(config);
 /**
  *
  * Crea una nueva instancia de Sequelize.
@@ -22,12 +25,12 @@ import PostgresDialect from "sequelize/postgres";
  * proporcionada en el archivo config.json.
  */
 let sequelize;
-if (config.use_env_variable) {
+if (pool._query.use_env_variable) {
   // Si la configuración usa una variable de entorno
   sequelize = new Sequelize(
-    _env[config.use_env_variable],
+    _env[pool._query.use_env_variable],
     { dialect: PostgresDialect },
-    config
+    pool._query
   ); // Conexión a la base de datos
 } else {
   // Si no usa una variable de entorno
@@ -35,7 +38,7 @@ if (config.use_env_variable) {
     config.database,
     config.username,
     config.password,
-    config
+    pool._query
   );
 }
 

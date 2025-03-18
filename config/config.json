@@ -17,14 +17,16 @@
   "production": {
     "username": "postgrespostgrestasks_user",
     "password": "Tq2xh54NS3fy0BIkHjtN55KNL3W8wIJn",
-    "database": "postgrestasks",
+    "database": {
+      "url": "postgresql://postgrestasks_user:Tq2xh54NS3fy0BIkHjtN55KNL3W8wIJn@dpg-cv4oap56l47c73aq241g-a.oregon-postgres.render.com:5432/postgrestasks"
+    },
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
         "rejectUnauthorized": false
       }
     },
-    "clientMinMessages": "ignore",
+    "clientMinMessages": "notice",
     "port": 5432,
     "host": "dpg-cv4oap56l47c73aq241g-a.oregon-postgres.render.com"
   }
