@@ -1,5 +1,5 @@
 import express from "express"; // Para crear el servidor
-import { urlencoded } from "body-parser"; //Para extraer la data del "body"
+import bodyParser from "body-parser"; //Para extraer la data del "body"
 //const { Sequelize } = require("sequelize"); // Para manejar la base de datos
 import overrideMethod from "method-override"; //Para poder usar los verbos PUT y DELETE
 import session from "express-session"; //Para manejar las sesiones, como el login
@@ -7,6 +7,8 @@ import session from "express-session"; //Para manejar las sesiones, como el logi
 import { Server } from "socket.io"; //Para manejar las conexiones en tiempo real
 
 const app = express();
+
+let urlencoded = bodyParser.urlencoded;
 
 const port = process.env.POSTGRES_PORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
 
