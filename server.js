@@ -62,7 +62,7 @@ let server = app.listen(process.env.PORT || port, () => {
 }); //Asignamos la escucha del puerto a una variable para poder implementarlo en las Serversockets
 
 // Sección de manejo de Serversockets "realtime"
-let io = Server(server);
+let io = new Server(server);
 let Serversockets = {};
 
 let usersCount = 0;
