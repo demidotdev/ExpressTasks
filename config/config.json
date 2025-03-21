@@ -15,9 +15,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "database": {
-      "url": "process.env.DATABASE_URL"
-    },
+    "databaseUrl": "${DATABASE_URL}",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {

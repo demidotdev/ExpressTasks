@@ -3,14 +3,10 @@ import bodyParser from "body-parser"; //Para extraer la data del "body"
 //const { Sequelize } = require("sequelize"); // Para manejar la base de datos
 import overrideMethod from "method-override"; //Para poder usar los verbos PUT y DELETE
 import session from "express-session"; //Para manejar las sesiones, como el login
+import pg from "pg";
+import connectPgSimple from "connect-pg-simple";
 
 import { Server } from "socket.io"; //Para manejar las conexiones en tiempo real
-
-const app = express();
-
-let urlencoded = bodyParser.urlencoded;
-
-const port = process.env.POSTGRES_PORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
 
 import tasksRoutes from "./routes/tasks_routes.js"; //Para manejar las rutas
 import registrationsRoutes from "./routes/registrations_routes.js"; // Para manejar las rutas de registro de nuevos usuarios
@@ -18,7 +14,12 @@ import sessionsRoutes from "./routes/sessions_routes.js"; // Para manejar las ru
 import categoriesRoutes from "./routes/categories_routes.js"; // Para manejar las rutas de las categorias
 import findUserMiddleware from "./middlewares/find_user.js"; // Para mostrar el ususario loggeado en el home
 import authUserMiddeleware from "./middlewares/auth_user.js";
-import connectPgSimple from "connect-pg-simple";
+
+const app = express();
+
+let urlencoded = bodyParser.urlencoded;
+
+const port = process.env.POSTGRES_PORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
 
 //El método "use" inserta un nuevo Middleware en el stack.
 app.use(urlencoded({ extended: true })); // Para tomar la data del body ya formateada
@@ -32,6 +33,11 @@ let sessionConfig = {
   secret: ["98rgj9gamámgpdfog65477865km", "12412mjp9oiupm34535mlnhfvswtfrhj"],
   resave: false, // Indica si se debe reescribir la sesión que aún no ha cambiado
   saveUninitialized: false, // Indica si se debe guardar una sesión sin contenido al ser inicializada
+  conString: process.env.DATABASE_URL,
+  cookie: {
+    secure: true,
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+  },
 };
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
@@ -59,7 +65,7 @@ app.get("/", function (req, res) {
   });
 });
 
-let server = app.listen(port, () => {
+let server = app.listen(port || 8080, () => {
   console.log(`Server is running on port ${port}`);
 }); //Asignamos la escucha del puerto a una variable para poder implementarlo en las Serversockets
 
