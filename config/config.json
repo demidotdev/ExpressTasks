@@ -20,7 +20,7 @@
     "host": "${PGHOST}",
     "database": "${PGDATABASE}",
     "databaseUrl": "${DATABASE_URL}",
-    "port": "${PGPORT}",
+    "port": 5432,
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
