@@ -25,7 +25,7 @@ const dbUrl = config.databaseUrl;
 let sequelize;
 if (configEnv.use_env_variable) {
   // Si la configuración usa una variable de entorno
-  sequelize = new Sequelize(dbUrl, config); // Conexión a la base de datos
+  sequelize = new Sequelize(dbUrl, { dialect: PostgresDialect}, config); // Conexión a la base de datos
 } else {
   // Si no usa una variable de entorno
   sequelize = new Sequelize(

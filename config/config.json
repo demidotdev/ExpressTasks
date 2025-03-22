@@ -23,7 +23,7 @@
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
-        "rejectUnauthorized": true
+        "rejectUnauthorized": false
       }
     }
   }
