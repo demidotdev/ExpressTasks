@@ -18,7 +18,6 @@
     "username": "${POSTGRES_USER}",
     "password": "${POSTGRES_PASSWORD}",
     "database": "${DATABASE_NAME}",
-    "host": "${POSTGRES_HOST}",
     "databaseUrl": "${DATABASE_URL}",
     "dialect": "postgres",
     "dialectOptions": {
