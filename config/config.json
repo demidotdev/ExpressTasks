@@ -15,11 +15,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "${PGUSER}",
-    "password": "${PGPASSWORD}",
-    "host": "${PGHOST}",
-    "database": "${PGDATABASE}",
-    "databaseUrl": "${DATABASE_URL}",
+    "username": "${[PGUSER]}",
+    "password": "${[PGPASSWORD]}",
+    "host": "${{PGHOST}}",
+    "database": "${{PGDATABASE}}",
+    "databaseUrl": "${{DATABASE_URL}}",
     "port": 5432,
     "dialect": "postgres",
     "dialectOptions": {
