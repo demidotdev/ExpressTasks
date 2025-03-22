@@ -17,7 +17,7 @@
   "production": {
     "username": "${[PGUSER]}",
     "password": "${[PGPASSWORD]}",
-    "host": "postgres-production-30ee.up.railway.app",
+    "host": "postgres.railway.internal",
     "database": "${{PGDATABASE}}",
     "databaseUrl": "${{DATABASE_URL}}",
     "port": 5432,
