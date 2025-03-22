@@ -15,6 +15,9 @@ import categoriesRoutes from "./routes/categories_routes.js"; // Para manejar la
 import findUserMiddleware from "./middlewares/find_user.js"; // Para mostrar el ususario loggeado en el home
 import authUserMiddeleware from "./middlewares/auth_user.js";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 const app = express();
 
 let urlencoded = bodyParser.urlencoded;
