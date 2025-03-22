@@ -19,7 +19,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const { Pool } = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.databaseUrl,
 });
 
 const app = express();
