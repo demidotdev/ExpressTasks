@@ -15,11 +15,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "${DATABASE_USER}",
-    "password": "${DATABASE_PASSWORD}",
-    "database": "${DATABASE_NAME}",
-    "host": "${DATABASE_HOST}",
-    "databaseUrl": "${DATABASE_URL}",
+    "username": "${{DATABASE_USER}}",
+    "password": "${{DATABASE_PASSWORD}}",
+    "database": "${{DATABASE_NAME}}",
+    "host": "${{DATABASE_HOST}}",
+    "databaseUrl": "${{DATABASE_URL}}",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
