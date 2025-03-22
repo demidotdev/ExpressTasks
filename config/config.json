@@ -15,10 +15,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "${DATABASE_USER}",
-    "password": "${DATABASE_PASSWORD}",
+    "username": "${POSTGRES_USER}",
+    "password": "${POSTGRES_PASSWORD}",
     "database": "${DATABASE_NAME}",
-    "host": "${DATABASE_HOST}",
+    "host": "${POSTGRES_HOST}",
     "databaseUrl": "${DATABASE_URL}",
     "dialect": "postgres",
     "dialectOptions": {
