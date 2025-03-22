@@ -33,7 +33,7 @@ let sessionConfig = {
   secret: ["98rgj9gamámgpdfog65477865km", "12412mjp9oiupm34535mlnhfvswtfrhj"],
   resave: false, // Indica si se debe reescribir la sesión que aún no ha cambiado
   saveUninitialized: false, // Indica si se debe guardar una sesión sin contenido al ser inicializada
-  conString: process.env.DATABASE_URL,
+  conString: process.env.databaseUrl,
   cookie: {
     secure: true,
     maxAge: 30 * 24 * 60 * 60 * 1000,
