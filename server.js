@@ -18,7 +18,9 @@ import authUserMiddeleware from "./middlewares/auth_user.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-const { Pool } = pg;
+const { Pool } = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+});
 
 const app = express();
 
@@ -38,7 +40,7 @@ let sessionConfig = {
   secret: ["98rgj9gamámgpdfog65477865km", "12412mjp9oiupm34535mlnhfvswtfrhj"],
   resave: false, // Indica si se debe reescribir la sesión que aún no ha cambiado
   saveUninitialized: false, // Indica si se debe guardar una sesión sin contenido al ser inicializada
-  pool: new Pool({ connectionString: process.env.DATABASE_URL }),
+  pool: Pool,
   cookie: {
     secure: true,
     maxAge: 30 * 24 * 60 * 60 * 1000,

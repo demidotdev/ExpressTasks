@@ -4,7 +4,7 @@ import { connect } from "socket.io-client";
 let host = "http://localhost:8080 ";
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
-  host = process.env.POSTGRES_HOST;
+  host = process.env.host;
 }
 
 let socket = connect(host, { reconnect: true });
