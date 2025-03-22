@@ -16,10 +16,13 @@ import findUserMiddleware from "./middlewares/find_user.js"; // Para mostrar el 
 import authUserMiddeleware from "./middlewares/auth_user.js";
 
 import dotenv from "dotenv";
-dotenv.config();
+import path from "node:path";
+dotenv.config(path.join(__dirname, "/../.env"), { debug: true });
+
+console.log(process.env.DATABASE_URL);
 
 const { Pool } = new pg.Pool({
-  connectionString: process.env.databaseUrl,
+  connectionString: process.env.DATABASE_URL,
 });
 
 const app = express();

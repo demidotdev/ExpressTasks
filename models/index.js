@@ -10,6 +10,8 @@ import path from "node:path";
 import Sequelize from "sequelize";
 import process from "process";
 import { PostgresDialect } from "@sequelize/postgres";
+import dotenv from "dotenv";
+dotenv.config(path.join(__dirname, "/../.env"), { debug: true });
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 import config from (path.join(__dirname, "/../config/config.json"));
