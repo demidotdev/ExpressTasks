@@ -15,10 +15,12 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "${POSTGRES_USER}",
-    "password": "${POSTGRES_PASSWORD}",
-    "database": "${DATABASE_NAME}",
+    "username": "${PGUSER}",
+    "password": "${PGPASSWORD}",
+    "host": "${PGHOST}",
+    "database": "${PGDATABASE}",
     "databaseUrl": "${DATABASE_URL}",
+    "port": "${PGPORT}",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
