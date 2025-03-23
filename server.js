@@ -38,7 +38,7 @@ const app = express();
 
 let urlencoded = bodyParser.urlencoded;
 
-const port = process.env.PGPORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
+const port = process.env.port || 8080; //Para manejar el puerto en el que se ejecutará el servidor
 
 //El método "use" inserta un nuevo Middleware en el stack.
 app.use(urlencoded({ extended: true })); // Para tomar la data del body ya formateada

@@ -20,7 +20,7 @@
     "host": "Process.env.PGHOST",
     "database": "process.env.PGDATABASE",
     "databaseUrl": "process.env.DATABASE_URL",
-    "port": "${process.env.PGPORT}",
+    "port": "process.env.PGPORT",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
