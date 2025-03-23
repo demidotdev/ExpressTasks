@@ -16,8 +16,12 @@ import categoriesRoutes from "./routes/categories_routes.js"; // Para manejar la
 import findUserMiddleware from "./middlewares/find_user.js"; // Para mostrar el ususario loggeado en el home
 import authUserMiddeleware from "./middlewares/auth_user.js";
 
+const customTarget = {};
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ processEnv: customTarget });
+
+console.log("customTarget", customTarget.HELLO);
+console.log("process.env", process.env.HELLO);
 
 console.log(
   "La database url es " +
