@@ -15,12 +15,12 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "${{PGUSER}}",
-    "password": "${{PGPASSWORD}}",
-    "host": "${{PGHOST}}",
-    "database": "${{PGDATABASE}}",
-    "databaseUrl": "${{DATABASE_URL}}",
-    "port": 5432,
+    "username": "process.env.PGUSER",
+    "password": "process.env.PGPASSWORD",
+    "host": "Process.env.PGHOST",
+    "database": "process.env.PGDATABASE",
+    "databaseUrl": "process.env.DATABASE_URL",
+    "port": "process.env.PGPORT",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {

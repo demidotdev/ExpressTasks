@@ -5,19 +5,25 @@
  * Este archivo index.js se encarga de cargar todos los modelos y asociaciones.
  * Estos archivos son generados de forma automática por el CLI de Sequelize.
  */
+
+/** @type {import('sequelize').Sequelize} */
 import * as fs from "node:fs/promises";
 import path from "node:path";
 import Sequelize from "sequelize";
 import process from "process";
 import { PostgresDialect } from "@sequelize/postgres";
 import dotenv from "dotenv";
-dotenv.config(path.join(__dirname, "/../.env"), { debug: true });
+dotenv.config();
+
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
-import config from (path.join(__dirname, "/../config/config.json"));
+import config from "/../config/config.json";
 const configEnv = config[env];
 const db = {};
 const dbUrl = config.databaseUrl;
+console.log("el env es " + env);
+console.log(configEnv);
+
 /**
  * Crea una nueva instancia de Sequelize.
  * Si la configuración usa una variable de entorno, se conecta a la base de datos
@@ -27,7 +33,7 @@ const dbUrl = config.databaseUrl;
 let sequelize;
 if (configEnv.use_env_variable) {
   // Si la configuración usa una variable de entorno
-  sequelize = new Sequelize(dbUrl, { dialect: PostgresDialect}, config); // Conexión a la base de datos
+  sequelize = new Sequelize(dbUrl, { dialect: PostgresDialect }, config); // Conexión a la base de datos
 } else {
   // Si no usa una variable de entorno
   sequelize = new Sequelize(

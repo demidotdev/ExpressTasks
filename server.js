@@ -1,3 +1,4 @@
+"use strict";
 import express from "express"; // Para crear el servidor
 import bodyParser from "body-parser"; //Para extraer la data del "body"
 //const { Sequelize } = require("sequelize"); // Para manejar la base de datos
@@ -16,10 +17,18 @@ import findUserMiddleware from "./middlewares/find_user.js"; // Para mostrar el 
 import authUserMiddeleware from "./middlewares/auth_user.js";
 
 import dotenv from "dotenv";
-import path from "node:path";
-dotenv.config(path.join(__dirname, "/../.env"), { debug: true });
+dotenv.config();
 
-console.log(process.env.DATABASE_URL);
+console.log(
+  "La database url es " +
+    process.env.DATABASE_URL +
+    " y el puerto  es " +
+    process.env.PGPORT +
+    " el entorno es " +
+    process.env.NODE_ENV +
+    " y el host es " +
+    process.env.PGHOST
+);
 
 const { Pool } = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -29,7 +38,7 @@ const app = express();
 
 let urlencoded = bodyParser.urlencoded;
 
-const port = process.env.port || 8080; //Para manejar el puerto en el que se ejecutará el servidor
+const port = process.env.PGPORT || 8080; //Para manejar el puerto en el que se ejecutará el servidor
 
 //El método "use" inserta un nuevo Middleware en el stack.
 app.use(urlencoded({ extended: true })); // Para tomar la data del body ya formateada

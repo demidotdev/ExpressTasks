@@ -1,12 +1,13 @@
 //Código para conectar el cliente con el servidor de socket.io y exportar el módulo
 import { connect } from "socket.io-client";
 import dotenv from "dotenv";
-dotenv.config();
+import path from "node:path";
+dotenv.config(path.join(__dirname, "/../.env"), { debug: true });
 
 let host = "http://localhost:8080 ";
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
-  host = process.env.host;
+  host = process.env.PGHOST;
 }
 
 let socket = connect(host, { reconnect: true });
