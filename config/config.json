@@ -17,7 +17,7 @@
   "production": {
     "username": "process.env.PGUSER",
     "password": "process.env.PGPASSWORD",
-    "host": "Process.env.PGHOST",
+    "host": "process.env.PGHOST",
     "database": "process.env.PGDATABASE",
     "databaseUrl": "process.env.DATABASE_URL",
     "port": "process.env.PGPORT",

@@ -22,7 +22,7 @@ const configEnv = config[env];
 const db = {};
 const dbUrl = config.databaseUrl;
 console.log("el env es " + env);
-console.log(configEnv);
+console.log(" el configEnv es " + configEnv);
 
 /**
  * Crea una nueva instancia de Sequelize.
