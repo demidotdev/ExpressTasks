@@ -7,7 +7,7 @@
  */
 
 /** @type {import('sequelize').Sequelize} */
-import * as fs from "node:fs/promises";
+import * as fs from "node:fs";
 import path from "node:path";
 import Sequelize from "sequelize";
 import process from "process";
@@ -21,8 +21,6 @@ import config from "/../config/config.json";
 const configEnv = config[env];
 const db = {};
 const dbUrl = config.databaseUrl;
-console.log("el env es " + env);
-console.log(" el configEnv es " + configEnv);
 
 /**
  * Crea una nueva instancia de Sequelize.
@@ -31,6 +29,9 @@ console.log(" el configEnv es " + configEnv);
  * proporcionada en el archivo config.json.
  */
 let sequelize;
+(() => {
+  console.log(configEnv);
+})();
 if (configEnv.use_env_variable) {
   // Si la configuración usa una variable de entorno
   sequelize = new Sequelize(dbUrl, { dialect: PostgresDialect }, config); // Conexión a la base de datos

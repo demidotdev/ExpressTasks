@@ -53,7 +53,7 @@ let sessionConfig = {
   secret: ["98rgj9gamámgpdfog65477865km", "12412mjp9oiupm34535mlnhfvswtfrhj"],
   resave: false, // Indica si se debe reescribir la sesión que aún no ha cambiado
   saveUninitialized: false, // Indica si se debe guardar una sesión sin contenido al ser inicializada
-  pool: Pool,
+  pool: { Pool },
   cookie: {
     secure: true,
     maxAge: 30 * 24 * 60 * 60 * 1000,
