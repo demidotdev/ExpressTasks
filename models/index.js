@@ -29,9 +29,7 @@ const dbUrl = config.databaseUrl;
  * proporcionada en el archivo config.json.
  */
 let sequelize;
-(() => {
-  console.log(configEnv);
-})();
+
 if (configEnv.use_env_variable) {
   // Si la configuración usa una variable de entorno
   sequelize = new Sequelize(dbUrl, { dialect: PostgresDialect }, config); // Conexión a la base de datos
@@ -62,6 +60,12 @@ fs.readdirSync(__dirname) // Leemos el directorio actual
     );
     db[model.name] = model; // Agregamos el modelo al objeto db
   });
+
+fs.writeFileSync(
+  __dirname + "/../config/config.json",
+  JSON.stringify(config, null, 2)
+);
+console.log("config.json actualizado" + JSON.stringify(config, null, 2));
 
 Object.keys(db).forEach((modelName) => {
   // Iteramos sobre los modelos
