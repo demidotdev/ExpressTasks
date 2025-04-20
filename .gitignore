@@ -9,4 +9,4 @@ npm-debug.log
 # build artifacts that should be gitignored
 node_modules
 
-config1.json
+config
