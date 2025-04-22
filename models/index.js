@@ -10,17 +10,13 @@
 import * as fs from "node:fs";
 import path from "node:path";
 import Sequelize from "sequelize";
-import process from "process";
 import { PostgresDialect } from "@sequelize/postgres";
-import dotenv from "dotenv";
-dotenv.config();
 
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "development";
+const env = "development";
 import config from "/../config/config.json";
 const configEnv = config[env];
 const db = {};
-const dbUrl = config.databaseUrl;
 
 /**
  * Crea una nueva instancia de Sequelize.
@@ -30,17 +26,39 @@ const dbUrl = config.databaseUrl;
  */
 let sequelize;
 
+console.log(configEnv.use_env_variable);
+
 if (configEnv.use_env_variable) {
   // Si la configuración usa una variable de entorno
-  sequelize = new Sequelize(dbUrl, { dialect: PostgresDialect }, config); // Conexión a la base de datos
+  //  fs.writeFileSync(
+  //__dirname + ,
+  //JSON.stringify(config, null, 2)
+  //);
+  // Conexión a la base de datos
+
+  try {
+    sequelize = new Sequelize(
+      process.env[configEnv.use_env_variable],
+      configEnv,
+      {
+        dialect: PostgresDialect,
+      }
+    );
+  } catch (error) {
+    console.error("Error al conectar a la base de datos:", error);
+  }
 } else {
   // Si no usa una variable de entorno
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
+  try {
+    sequelize = new Sequelize(
+      configEnv.database,
+      configEnv.username,
+      configEnv.password,
+      configEnv
+    );
+  } catch (error) {
+    console.error("Error al conectar a la base de datos:", error);
+  }
 }
 
 fs.readdirSync(__dirname) // Leemos el directorio actual
@@ -61,11 +79,7 @@ fs.readdirSync(__dirname) // Leemos el directorio actual
     db[model.name] = model; // Agregamos el modelo al objeto db
   });
 
-fs.writeFileSync(
-  __dirname + "/../config/config.json",
-  JSON.stringify(config, null, 2)
-);
-console.log("config.json actualizado" + JSON.stringify(config, null, 2));
+// Definimos las asociaciones
 
 Object.keys(db).forEach((modelName) => {
   // Iteramos sobre los modelos
