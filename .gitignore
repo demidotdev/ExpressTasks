@@ -3,7 +3,7 @@
 .DS_Store
 node_modules
 
-config.json
+config
 
 npm-debug.log
 .env
