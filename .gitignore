@@ -2,7 +2,8 @@
 .vscode
 .DS_Store
 node_modules
-config
+
+config.json
 
 npm-debug.log
 .env
