@@ -20,9 +20,11 @@ const db = {};
  * proporcionada en el archivo config.json.
  */
 let sequelize;
-if (config.use_env_variable) { // Si la configuración usa una variable de entorno
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);// Conexión a la base de datos
-} else { // Si no usa una variable de entorno
+if (config.use_env_variable) {
+  // Si la configuración usa una variable de entorno
+  sequelize = new Sequelize(process.env[config.use_env_variable], config); // Conexión a la base de datos
+} else {
+  // Si no usa una variable de entorno
   sequelize = new Sequelize(
     config.database,
     config.username,
@@ -41,16 +43,19 @@ fs.readdirSync(__dirname) // Leemos el directorio actual
     );
   })
   .forEach((file) => {
-    const model = require(path.join(__dirname, file))( // Importamos el modelo
-      sequelize, 
+    const model = require(path.join(__dirname, file))(
+      // Importamos el modelo
+      sequelize,
       Sequelize.DataTypes
     );
-    db[model.name] = model;// Agregamos el modelo al objeto db
+    db[model.name] = model; // Agregamos el modelo al objeto db
   });
 
-Object.keys(db).forEach((modelName) => { // Iteramos sobre los modelos
-  if (db[modelName].associate) { // Si el modelo tiene un método "associate"
-    db[modelName].associate(db);// Llamamos al método "associate"
+Object.keys(db).forEach((modelName) => {
+  // Iteramos sobre los modelos
+  if (db[modelName].associate) {
+    // Si el modelo tiene un método "associate"
+    db[modelName].associate(db); // Llamamos al método "associate"
   }
 });
 
