@@ -15,6 +15,21 @@ const categoriesRoutes = require("./routes/categories_routes"); // Para manejar 
 const findUserMiddleware = require("./middlewares/find_user"); // Para mostrar el ususario loggeado en el home
 const authUserMiddeleware = require("./middlewares/auth_user");
 
+const dotenv = require("dotenv");
+const fs = require("fs");
+
+dotenv.config();
+
+const config = require("../config/config.json");
+
+Object.keys(process.env).forEach((key) => {
+  if (key.startsWith("PG" || "DATABASE_URL")) {
+    config[key] = process.env[key];
+  }
+});
+
+fs.writeFileSync("../config/config.json", JSON.stringify(config, null, 2));
+
 //El método "use" inserta un nuevo Middleware en el stack.
 app.use(bodyParser.urlencoded({ extended: true })); // Para tomar la data del body ya formateada
 
